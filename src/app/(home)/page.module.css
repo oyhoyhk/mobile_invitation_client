@@ -1,0 +1,14 @@
+.container {
+  width: 1200px;
+  height: 80vh;
+  margin: 0 auto;
+  margin-top: 50px;
+  overflow: auto;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}

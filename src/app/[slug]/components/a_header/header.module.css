@@ -1,0 +1,43 @@
+.bird {
+  width: 339px;
+  height: 52px;
+  background: url("/bird.png");
+  background-size: cover;
+  position: absolute;
+  left: 50%;
+  top: 17px;
+  transform: translateX(-50%);
+}
+
+.ribbon {
+  width: 342px;
+  height: 193px;
+  background: url("/ribbon.png");
+  background-size: cover;
+  position: absolute;
+  left: 50%;
+  top: 27px;
+  transform: translateX(-50%);
+}
+.text {
+  text-align: center;
+  font-size: 40px;
+  position: absolute;
+  width: 209px;
+  height: 86px;
+  left: 83px;
+  top: 108px;
+  line-height: 50px;
+  letter-spacing: -0.3px;
+  font-weight: 500;
+  white-space: nowrap;
+  font-style: italic;
+}
+
+.container {
+  margin: 0 auto;
+  margin-top: 15px;
+  width: 95%;
+  height: 210px;
+  position: relative;
+}

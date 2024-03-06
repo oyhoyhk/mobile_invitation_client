@@ -1,0 +1,13 @@
+.container {
+  min-width: 375px;
+  max-width: 420px;
+  text-align: center;
+}
+
+.divider {
+  width: 80%;
+  height: 1px;
+  background: lightgray;
+  margin: 0 auto;
+  margin-top: 50px;
+}
