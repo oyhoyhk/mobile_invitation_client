@@ -42,8 +42,9 @@ export default function GuestBook() {
 const GuestBookInfo = styled.div`
   background: #f5e3e24d;
   border-radius: 4px;
-  width: 333px;
+  width: 100%;
   height: 108px;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   margin-top: 15px;
@@ -57,7 +58,7 @@ const RightInfo = styled.div`
 `;
 
 const Title = styled.div`
-  width: 95%;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -85,7 +86,7 @@ const Close = styled.button`
 `;
 
 const Content = styled.p`
-  width: 95%;
+  width: 100%;
   height: 800px;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* 원하는 줄 수 설정 */

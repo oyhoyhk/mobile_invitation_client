@@ -27,20 +27,21 @@ export default function Location({ location }: { location: string }) {
   const locationInfo = JSON.parse(location);
   console.log(location);
 
-  //   useEffect(() => {
-  //     if (!naver || !ref.current || !locationInfo.address) return;
-  //     console.log("search, naver : ", naver);
+  useEffect(() => {
+    if (!naver || !ref.current || !locationInfo.address) return;
+    console.log("search, naver : ", naver);
+    const [x, y] = [128, 38];
 
-  //     const map = new naver.maps.Map(ref.current, {
-  //       center: new naver.maps.LatLng(y, x),
-  //       zoom: 17,
-  //     });
+    const map = new naver.maps.Map(ref.current, {
+      center: new naver.maps.LatLng(y, x),
+      zoom: 17,
+    });
 
-  //     new naver.maps.Marker({
-  //       position: new naver.maps.LatLng(y, x),
-  //       map: map,
-  //     });
-  //   }, [naver, locationInfo]);
+    new naver.maps.Marker({
+      position: new naver.maps.LatLng(y, x),
+      map: map,
+    });
+  }, [naver, locationInfo]);
 
   return (
     <Container>
@@ -92,6 +93,7 @@ const Button = styled.div`
   color: #817a5e;
   font-size: 0.9rem;
   position: relative;
+  width: 30%;
 
   &:first-of-type,
   &:nth-of-type(2) {
