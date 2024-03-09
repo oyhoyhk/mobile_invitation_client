@@ -1,0 +1,7 @@
+.container {
+  white-space: pre-line;
+  text-align: center;
+  margin-top: var(--margin-top);
+  line-height: 26px;
+  font-size: 14px;
+}

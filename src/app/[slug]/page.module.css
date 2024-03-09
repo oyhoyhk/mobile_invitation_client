@@ -1,6 +1,7 @@
 .container {
   min-width: 375px;
   max-width: 420px;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -10,4 +11,14 @@
   background: lightgray;
   margin: 0 auto;
   margin-top: 50px;
+}
+
+.button {
+  width: 333px;
+  height: 36px;
+  border-radius: 28px;
+  border: 1px solid rgba(129, 122, 94, 0.3);
+  background: #f5e3e2;
+  margin-top: var(--margin-top);
+  cursor: pointer;
 }

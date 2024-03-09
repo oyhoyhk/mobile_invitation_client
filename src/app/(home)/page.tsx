@@ -8,21 +8,18 @@ async function getData() {
 
 export default async function Home() {
   const data = await getData();
-  const handleClick = (id: string) => {
-    // 클릭 시 `[slug]` 페이지로 이동하고 id 값을 전달
-    window.location.href = `/[slug]?id=${id}`;
-  };
+
   console.log(data);
   return (
     <div className={styles.container}>
-      {data.map((info: { id: string }) => {
-        const [dateString, groom, bride] = info.id.split("-");
+      {data.map((info: { id: string; name: string; createdAt: string }) => {
+        const { groom, bride } = JSON.parse(info.name);
         return (
           <div className={styles.row} key={info.id}>
             <span>신랑 : {groom}</span>
             <span>신부 : {bride}</span>
             <span>
-              날짜 : {new Date(Number(dateString)).toLocaleDateString()}
+              날짜 : {new Date(info.createdAt).toLocaleDateString("kor")}
             </span>
             <Link href={`/[slug]?id=${info.id}`}>청첩장으로 이동</Link>
           </div>

@@ -1,0 +1,39 @@
+.info {
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.title {
+  font-weight: bold;
+  white-space: pre-line;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-top: 45px;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.route {
+  padding-left: 35px;
+  margin-bottom: 15px;
+  white-space: pre-line;
+  line-height: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.route.textarea {
+  white-space: pre-line;
+}
+
+.container {
+  margin: 0 auto;
+  margin-top: var(--margin-top);
+  width: 90%;
+  margin-bottom: var(--margin-top);
+}

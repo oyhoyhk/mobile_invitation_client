@@ -5,16 +5,10 @@ export default function Header() {
     <div className={styles.container}>
       <div className={styles.bird} />
       <div className={styles.ribbon} />
-      <div
-        className={styles.text + " cursive"}
-        style={{ left: "83px", top: "108px" }}
-      >
+      <div className={styles.text + " cursive"} style={{ top: "108px" }}>
         We are getting
       </div>
-      <div
-        className={styles.text + " cursive"}
-        style={{ left: "83px", top: "140px" }}
-      >
+      <div className={styles.text + " cursive"} style={{ top: "140px" }}>
         Married
       </div>
     </div>
