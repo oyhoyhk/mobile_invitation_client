@@ -30,7 +30,7 @@ export default function Location({ location }: { location: string }) {
   useEffect(() => {
     if (!naver || !ref.current || !locationInfo.address) return;
     console.log("search, naver : ", naver);
-    const [x, y] = [128, 38];
+    const { x, y } = locationInfo;
 
     const map = new naver.maps.Map(ref.current, {
       center: new naver.maps.LatLng(y, x),

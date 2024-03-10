@@ -2,7 +2,9 @@ import Link from "next/link";
 import styles from "./page.module.css";
 
 async function getData() {
-  const response = await fetch("http://localhost:4000/api/wedding");
+  const response = await fetch("http://localhost:4000/api/wedding", {
+    cache: "no-store",
+  });
   return response.json();
 }
 
