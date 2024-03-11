@@ -18,3 +18,14 @@
   margin-bottom: 5px;
   height: 50px;
 }
+
+@media screen and (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5px 10px;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+}
