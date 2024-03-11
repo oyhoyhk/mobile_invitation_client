@@ -3,8 +3,11 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
+        protocol: process.env.NODE_ENV === "production" ? "https" : "http",
+        hostname:
+          process.env.NODE_ENV === "production"
+            ? "push-swap.site"
+            : "localhost",
         port: "4000",
       },
     ],
