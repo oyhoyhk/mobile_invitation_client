@@ -1,7 +1,7 @@
 "use client";
 
 import useNaverMap from "@/app/lib/hooks/useNaverMap";
-import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 import styled from "@emotion/styled";
 import { useEffect, useRef } from "react";
 import React from "react";

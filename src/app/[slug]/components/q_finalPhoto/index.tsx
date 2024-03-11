@@ -4,7 +4,7 @@ import getImageUrl from "@/app/lib/getImageUrl";
 import styles from "./finalPhoto.module.css";
 import Image from "next/image";
 import { useRef } from "react";
-import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 
 export default function FinalPhoto({
   src,

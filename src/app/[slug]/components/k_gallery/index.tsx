@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styles from "./gallery.module.css";
 import { useRef } from "react";
-import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 
 export default function Gallery({ images }: { images: string[] }) {
   const conRef = useRef<HTMLDivElement>(null);

@@ -2,7 +2,7 @@
 import styles from "./calendar.module.css";
 import HeartSVG from "../../../../assets/heart.svg";
 import { useRef } from "react";
-import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
