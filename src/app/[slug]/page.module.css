@@ -22,4 +22,5 @@
   background: #f5e3e2;
   margin-top: var(--margin-top);
   cursor: pointer;
+  color: black;
 }
