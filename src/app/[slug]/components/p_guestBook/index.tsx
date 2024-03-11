@@ -1,7 +1,8 @@
 "use client";
 
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useRef } from "react";
 
 const data = [
   {
@@ -18,8 +19,11 @@ const data = [
 ];
 
 export default function GuestBook() {
+  const conRef = useRef<HTMLFieldSetElement>(null);
+  useScrollFadeIn(conRef);
+
   return (
-    <Container>
+    <Container ref={conRef} className="con">
       <legend>방명록</legend>
       <EditButton />
       {data.map((info, index) => (

@@ -1,4 +1,8 @@
+"use client";
+
+import { useRef } from "react";
 import styles from "./transportation.module.css";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
 
 const numberMapper = "①②③④⑤⑥⑦⑧⑨⑩";
 
@@ -7,10 +11,13 @@ export default function Transportation({
 }: {
   transportation: string;
 }) {
-  console.log(transportation);
+  const conRef = useRef<HTMLDivElement>(null);
   const transportationInfo = JSON.parse(transportation);
+
+  useScrollFadeIn(conRef);
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container + " con"} ref={conRef}>
       {Object.values(transportationInfo)
         .filter((info: any) => info.active)
         .map((info: any) => (

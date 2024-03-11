@@ -1,10 +1,19 @@
+"use client";
+import { useRef } from "react";
 import styles from "./secondDescription.module.css";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
 
 export default function SecondDescription({
   description,
 }: {
   description: string;
 }) {
-  console.log(description);
-  return <div className={styles.container}>{description}</div>;
+  const conRef = useRef<HTMLDivElement>(null);
+
+  useScrollFadeIn(conRef);
+  return (
+    <div className={styles.container + " con"} ref={conRef}>
+      {description}
+    </div>
+  );
 }

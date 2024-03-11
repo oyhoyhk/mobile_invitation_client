@@ -1,6 +1,7 @@
 "use client";
 
 import useNaverMap from "@/app/lib/hooks/useNaverMap";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
 import styled from "@emotion/styled";
 import { useEffect, useRef } from "react";
 import React from "react";
@@ -23,10 +24,10 @@ const buttons = [
 export default function Location({ location }: { location: string }) {
   const naver: any = useNaverMap();
   const ref = useRef<HTMLDivElement>(null);
-  const [roadAddress, setRoadAddress] = React.useState("");
+  const conRef = useRef<HTMLDivElement>(null);
   const locationInfo = JSON.parse(location);
-  console.log(location);
 
+  useScrollFadeIn(conRef);
   useEffect(() => {
     if (!naver || !ref.current || !locationInfo.address) return;
     console.log("search, naver : ", naver);
@@ -44,14 +45,14 @@ export default function Location({ location }: { location: string }) {
   }, [naver, locationInfo]);
 
   return (
-    <Container>
+    <Container ref={conRef} className="con">
       <CustomDivider />
       <Text className={locationInfo.detail ? "" : "empty"}>
         {locationInfo.detail || "ex) 로즈레터 호텔 10층 그랜드홀"}
       </Text>
       <CustomDivider style={{ marginTop: "25px" }} />
       <Text className={locationInfo.address ? "" : "empty"}>
-        {roadAddress || "ex) 서울시 서초구 로즈로"}
+        {locationInfo.address || "ex) 서울시 서초구 로즈로"}
       </Text>
       <Text
         className={locationInfo.phone ? "" : "empty"}

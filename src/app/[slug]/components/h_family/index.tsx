@@ -1,5 +1,9 @@
+"use client";
+
 import styles from "./family.module.css";
 import Mum from "../../../../assets/mum.svg";
+import { useRef } from "react";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
 
 export default function Family({
   family,
@@ -8,11 +12,13 @@ export default function Family({
   family: string;
   name: string;
 }) {
-  console.log(family);
+  const conRef = useRef<HTMLDivElement>(null);
+
+  useScrollFadeIn(conRef);
   const familyInfo = JSON.parse(family);
   const { groom, bride } = JSON.parse(name);
   return (
-    <div className={styles.container}>
+    <div className={styles.container + " con"} ref={conRef}>
       <div className={styles.text}>
         {!familyInfo.groom.father.alive ? (
           <Mum />

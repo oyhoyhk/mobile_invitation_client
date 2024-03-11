@@ -1,14 +1,18 @@
 "use client";
 
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useRef } from "react";
 import Arrow from "../../../../assets/arrowDown.svg";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
 
 export default function AccountInfo({ account }: { account: string }) {
+  const conRef = useRef<HTMLDivElement>(null);
+  useScrollFadeIn(conRef);
+
   const accountInfo = JSON.parse(account);
-  console.log(accountInfo);
+
   return (
-    <Container>
+    <Container className="con" ref={conRef}>
       <SubTitle>•마음 전하실 곳•</SubTitle>
       <Annoucement>
         {accountInfo.message ||

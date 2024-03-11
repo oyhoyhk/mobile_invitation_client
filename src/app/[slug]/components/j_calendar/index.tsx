@@ -1,14 +1,18 @@
+"use client";
 import styles from "./calendar.module.css";
 import HeartSVG from "../../../../assets/heart.svg";
+import { useRef } from "react";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export default function Calendar({ dateString }: { dateString: string }) {
+  const conRef = useRef<HTMLDivElement>(null);
+  useScrollFadeIn(conRef);
+
   const date = new Date(dateString);
   const color = "pink";
   const opacity = "1";
-
-  console.log(date);
 
   // 년도와 월을 추출합니다.
   const year = date.getFullYear();
@@ -29,7 +33,7 @@ export default function Calendar({ dateString }: { dateString: string }) {
   const emptyDays = [...Array(firstDayOfWeekIndex).keys()];
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container + " con"} ref={conRef}>
       {days.map((day) => (
         <div key={day} className={styles.dayName}>
           {day}

@@ -1,15 +1,19 @@
 "use client";
 
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useRef } from "react";
 
 export default function Attendance({
   attendanceMessage,
 }: {
   attendanceMessage: string;
 }) {
+  const conRef = useRef<HTMLFieldSetElement>(null);
+  useScrollFadeIn(conRef);
+
   return (
-    <Container>
+    <Container ref={conRef} className="con">
       <legend>참석의사 전달하기</legend>
       <p>{attendanceMessage}</p>
       <Button>참석의사 전달하기</Button>
