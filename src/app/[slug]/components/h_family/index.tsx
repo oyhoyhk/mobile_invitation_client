@@ -3,7 +3,7 @@
 import styles from "./family.module.css";
 import Mum from "../../../../assets/mum.svg";
 import { useRef } from "react";
-import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 
 export default function Family({
   family,
