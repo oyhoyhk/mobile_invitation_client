@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "@emotion/styled";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Arrow from "../../../../assets/arrowDown.svg";
 import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
 
@@ -10,6 +10,8 @@ export default function AccountInfo({ account }: { account: string }) {
   useScrollFadeIn(conRef);
 
   const accountInfo = JSON.parse(account);
+  const [groomToggle, setGroomToggle] = useState(false);
+  const [brideToggle, setBrideToggle] = useState(false);
 
   return (
     <Container className="con" ref={conRef}>
@@ -20,16 +22,23 @@ export default function AccountInfo({ account }: { account: string }) {
   계좌번호를 기재하였습니다.
   너그러운 마음으로 양해 부탁드립니다.`}
       </Annoucement>
-      <Button>
+      <Button onClick={() => setGroomToggle((prev) => !prev)}>
         <div />
         신랑측 계좌번호
-        <Arrow />
+        <Arrow className={groomToggle ? "rotate" : ""} />
       </Button>
       <AccountContainer>
         {accountInfo.list
           .filter((el: any) => el.type === "groom")
           .map((el: any) => (
-            <Account key={el.accountNumber}>
+            <Account
+              key={el.accountNumber}
+              style={{
+                height: groomToggle ? "95px" : "0px",
+                padding: groomToggle ? "20px" : "0px",
+                opacity: groomToggle ? 1 : 0,
+              }}
+            >
               <div>
                 <div>
                   <span>{el.bank}</span>
@@ -43,15 +52,22 @@ export default function AccountInfo({ account }: { account: string }) {
             </Account>
           ))}
       </AccountContainer>
-      <Button>
+      <Button onClick={() => setBrideToggle((prev) => !prev)}>
         <div />
-        신부측 계좌번호 <Arrow />
+        신부측 계좌번호 <Arrow className={brideToggle ? "rotate" : ""} />
       </Button>
       <AccountContainer>
         {accountInfo.list
           .filter((el: any) => el.type === "bride")
           .map((el: any) => (
-            <Account key={el.accountNumbAer}>
+            <Account
+              key={el.accountNumbAer}
+              style={{
+                height: brideToggle ? "95px" : "0px",
+                padding: brideToggle ? "20px" : "0px",
+                opacity: brideToggle ? 1 : 0,
+              }}
+            >
               <div>
                 <div>
                   <span>{el.bank}</span>
@@ -97,12 +113,23 @@ const Button = styled.div`
   margin-top: 25px;
   cursor: pointer;
   padding: 0 20px;
+
+  & > svg {
+    transition: 0.3s;
+
+    &.rotate {
+      transform: rotateZ(180deg);
+    }
+  }
 `;
 
 const AccountContainer = styled.div`
   width: 100%;
   background: #f8ece8;
-  border-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transition: 0.3s;
+  overflow: hidden;
 `;
 
 const Account = styled.div`
@@ -112,6 +139,8 @@ const Account = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
+
+  transition: 0.3s ease-in-out;
 
   &::after {
     content: "";
