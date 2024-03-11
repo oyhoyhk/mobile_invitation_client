@@ -20,7 +20,7 @@ import FinalPhoto from "./components/q_finalPhoto";
 import Footer from "./components/r_footer";
 
 async function getData(id: string) {
-  const response = await fetch(`http://localhost:4000/api/wedding/${id}`);
+  const response = await fetch(`${process.env.IMAGE_URL}api/wedding/${id}`);
   return response.json();
 }
 
