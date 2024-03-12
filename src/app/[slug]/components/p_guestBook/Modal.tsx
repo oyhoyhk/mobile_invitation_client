@@ -56,7 +56,6 @@ export default function Modal({
           placeholder="방명록 메시지"
         />
       </InputContainer>
-
       <Button type="submit">작성하기</Button>
     </Container>
   );
