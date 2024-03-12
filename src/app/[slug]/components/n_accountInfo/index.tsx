@@ -30,9 +30,9 @@ export default function AccountInfo({ account }: { account: string }) {
       <AccountContainer>
         {accountInfo.list
           .filter((el: any) => el.type === "groom")
-          .map((el: any) => (
+          .map((el: any, idx: number) => (
             <Account
-              key={el.accountNumber}
+              key={idx}
               style={{
                 height: groomToggle ? "95px" : "0px",
                 padding: groomToggle ? "20px" : "0px",
@@ -59,9 +59,9 @@ export default function AccountInfo({ account }: { account: string }) {
       <AccountContainer>
         {accountInfo.list
           .filter((el: any) => el.type === "bride")
-          .map((el: any) => (
+          .map((el: any, idx: number) => (
             <Account
-              key={el.accountNumbAer}
+              key={idx}
               style={{
                 height: brideToggle ? "95px" : "0px",
                 padding: brideToggle ? "20px" : "0px",

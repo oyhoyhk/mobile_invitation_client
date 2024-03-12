@@ -2,43 +2,55 @@
 
 import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 import styled from "@emotion/styled";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Modal from "./Modal";
+import DeleteModal from "./DeleteModal";
 
-const data = [
-  {
-    name: "이지은",
-    date: "2021-08-01",
-    content: "결혼 축하해!! 둘이 너무 잘 어울리고 예쁘다 ~ 행복하게 잘 살아!",
-  },
-  {
-    name: "이지은",
-    date: "2021-08-01",
-    content:
-      "결혼 축하해!! 둘이 너무 잘 어울리고 예쁘다 ~ 행복하게 잘 살아!ewrjer2i3jro23rjoeiwjroiwejreiowjrwdsfnkdf",
-  },
-];
-
-export default function GuestBook() {
+export default function GuestBook({ id }: { id: string }) {
   const conRef = useRef<HTMLFieldSetElement>(null);
   useScrollFadeIn(conRef);
+
+  const [toggle, setToggle] = useState(false);
+  const [deleteModal, setDeleteModal] = useState<number | null>(null);
+
+  const [list, setList] = useState<
+    { idx: number; name: string; createdAt: string; title: string }[]
+  >([]);
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_IMAGE_URL}api/guestbook?id=${id}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setList(res);
+      });
+  }, []);
 
   return (
     <Container ref={conRef} className="con">
       <legend>방명록</legend>
-      <EditButton />
-      {data.map((info, index) => (
+      <EditButton onClick={() => setToggle(true)} />
+      {list.map((info, index) => (
         <GuestBookInfo key={index}>
           <Title>
             <Name>{info.name}</Name>
             <RightInfo>
-              <DateInfo>{info.date}</DateInfo>
-              <Close>×</Close>
+              <DateInfo>{info.createdAt.slice(0, 10)}</DateInfo>
+              <Close onClick={() => setDeleteModal(info.idx)}>×</Close>
             </RightInfo>
           </Title>
-          <Content>{info.content}</Content>
+          <Content>{info.title}</Content>
         </GuestBookInfo>
       ))}
       <Button>더보기</Button>
+      {toggle && <Modal id={id} setToggle={setToggle} />}
+      {deleteModal && (
+        <DeleteModal
+          id={id}
+          idx={deleteModal}
+          setList={setList}
+          setDeleteModal={setDeleteModal}
+        />
+      )}
     </Container>
   );
 }

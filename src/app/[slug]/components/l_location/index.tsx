@@ -30,7 +30,6 @@ export default function Location({ location }: { location: string }) {
   useScrollFadeIn(conRef);
   useEffect(() => {
     if (!naver || !ref.current || !locationInfo.address) return;
-    console.log("search, naver : ", naver);
     const { x, y } = locationInfo;
 
     const map = new naver.maps.Map(ref.current, {

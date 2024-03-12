@@ -32,8 +32,6 @@ export default async function Slug({
   const id = searchParams.id;
   const data = await getData(id);
   const images = data.images.map((image: { url: string }) => image.url);
-  console.log(images);
-  console.log(data);
   return (
     <div className={styles.container} style={{ background: data.themeColor }}>
       <Header />
@@ -109,7 +107,7 @@ export default async function Slug({
       />
       <AccountInfo account={data.accountInfo} />
       <Attendance attendanceMessage={data.attendanceMessage} />
-      <GuestBook />
+      <GuestBook id={id} />
       <FinalPhoto
         src={images.filter((image: string) => image.includes("finalPhoto"))[0]}
         finalPhotoColor={data.finalPhotoColor}

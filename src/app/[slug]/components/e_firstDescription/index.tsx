@@ -5,6 +5,5 @@ export default function FirstDescription({
 }: {
   description: string;
 }) {
-  console.log(description);
   return <div className={styles.container}>{description}</div>;
 }

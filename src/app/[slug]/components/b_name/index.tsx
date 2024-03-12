@@ -2,7 +2,6 @@ import styles from "./name.module.css";
 
 export default function Name({ name }: { name: string }) {
   const { groom, bride } = JSON.parse(name);
-  console.log(name);
   return (
     <div className={styles.container}>
       <div>

@@ -11,7 +11,6 @@ async function getData() {
 export default async function Home() {
   const data = await getData();
 
-  console.log(data);
   return (
     <div className={styles.container}>
       <div style={{ fontSize: "2rem", marginBottom: "20px", color: "white" }}>

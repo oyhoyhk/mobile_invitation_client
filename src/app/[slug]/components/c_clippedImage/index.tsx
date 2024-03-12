@@ -5,7 +5,6 @@ import { HeartClip } from "./HeartClip";
 import getImageUrl from "@/app/lib/getImageUrl";
 
 export default async function ClippedImage({ src }: { src: string }) {
-  console.log(src);
   const imageUrl = await getImageUrl();
   return (
     <div className={styles.container}>

@@ -18,7 +18,6 @@ export default function useScrollFadeIn(
       entries.forEach((entry) => {
         // 해당 dom이 교차영역에 진입 시 적용하고 싶은 로직 작성
         if (entry.isIntersecting) {
-          console.log(entry.target);
           entry.target.classList.add("mount");
         }
       });
