@@ -3,7 +3,7 @@
 import styles from "./twoPhotos.module.css";
 import Image from "next/image";
 import { useRef } from "react";
-import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 
 export default function TwoPhotos({ urls }: { urls: string[] }) {
   const conRef = useRef<HTMLDivElement>(null);

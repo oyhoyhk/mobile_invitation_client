@@ -3,7 +3,7 @@
 import styled from "@emotion/styled";
 import React, { useRef, useState } from "react";
 import Arrow from "../../../../assets/arrowDown.svg";
-import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 
 export default function AccountInfo({ account }: { account: string }) {
   const conRef = useRef<HTMLDivElement>(null);

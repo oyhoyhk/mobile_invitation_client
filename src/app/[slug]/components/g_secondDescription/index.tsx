@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import styles from "./secondDescription.module.css";
-import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 
 export default function SecondDescription({
   description,

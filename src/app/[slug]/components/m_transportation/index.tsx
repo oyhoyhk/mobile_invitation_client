@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import styles from "./transportation.module.css";
-import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 
 const numberMapper = "①②③④⑤⑥⑦⑧⑨⑩";
 

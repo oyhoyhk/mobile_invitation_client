@@ -1,6 +1,6 @@
 "use client";
 
-import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIN";
+import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 import styled from "@emotion/styled";
 import React, { useRef } from "react";
 
