@@ -20,10 +20,13 @@ export default function FinalPhoto({
 
   return (
     <div className={styles.container + " con"} ref={conRef}>
-      <Image
-        src={process.env.NEXT_PUBLIC_IMAGE_URL + src}
-        layout="fill"
-        alt="finalPhoto"
+      <div
+        className={styles.photo}
+        style={{
+          backgroundImage: `url(${
+            process.env.NEXT_PUBLIC_IMAGE_URL + src.replaceAll("\\", "/")
+          })`,
+        }}
       />
       <div className={styles.cover} />
       <div className={styles.text} style={{ color: finalPhotoColor }}>

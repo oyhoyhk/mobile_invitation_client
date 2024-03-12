@@ -9,12 +9,13 @@ export default async function ClippedImage({ src }: { src: string }) {
   const imageUrl = await getImageUrl();
   return (
     <div className={styles.container}>
-      <Image
-        src={imageUrl + src}
-        alt="clippedImage"
+      <div
         className={styles.image}
-        width={100}
-        height={100}
+        style={{
+          backgroundImage: `url(${imageUrl + src.replaceAll("\\", "/")})`,
+          backgroundPosition: "center center",
+          backgroundSize: "cover",
+        }}
       />
       <HeartClip />
     </div>

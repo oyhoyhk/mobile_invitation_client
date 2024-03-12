@@ -11,11 +11,13 @@ export default function MainPhoto({ src }: { src: string }) {
   useScrollFadeIn(conRef);
   return (
     <div className={styles.container + " con"} ref={conRef}>
-      <Image
-        className={styles.image}
-        src={process.env.NEXT_PUBLIC_IMAGE_URL + src}
-        layout="fill"
-        alt="mainPhoto"
+      <div
+        className={styles.img}
+        style={{
+          backgroundImage: `url(${
+            process.env.NEXT_PUBLIC_IMAGE_URL + src.replaceAll("\\", "/")
+          })`,
+        }}
       />
     </div>
   );

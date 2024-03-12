@@ -12,17 +12,21 @@ export default function TwoPhotos({ urls }: { urls: string[] }) {
   return (
     <div className={styles.container + " con"} ref={conRef}>
       <div className={styles.image}>
-        <Image
-          src={process.env.NEXT_PUBLIC_IMAGE_URL + urls[0]}
-          layout="fill"
-          alt="twoPhotos"
+        <div
+          style={{
+            backgroundImage: `url(${
+              process.env.NEXT_PUBLIC_IMAGE_URL + urls[0].replaceAll("\\", "/")
+            })`,
+          }}
         />
       </div>
       <div className={styles.image}>
-        <Image
-          src={process.env.NEXT_PUBLIC_IMAGE_URL + urls[1]}
-          layout="fill"
-          alt="twoPhotos"
+        <div
+          style={{
+            backgroundImage: `url(${
+              process.env.NEXT_PUBLIC_IMAGE_URL + urls[1].replaceAll("\\", "/")
+            })`,
+          }}
         />
       </div>
     </div>
