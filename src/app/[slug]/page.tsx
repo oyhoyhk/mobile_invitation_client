@@ -48,7 +48,7 @@ export default async function Slug({
       />
       <div
         className="cursive"
-        style={{ fontSize: "2.5rem", marginTop: "var(--margin-top)" }}
+        style={{ fontSize: "2.4rem", marginTop: "var(--margin-top)" }}
       >
         Invite you
       </div>
@@ -78,14 +78,14 @@ export default async function Slug({
       />
       <div
         className="cursive"
-        style={{ fontSize: "2.5rem", marginTop: "var(--margin-top)" }}
+        style={{ fontSize: "2.4rem", marginTop: "var(--margin-top)" }}
       >
         Our Day
       </div>
       <Calendar dateString={data.date} />
       <div
         className="cursive"
-        style={{ fontSize: "2.5rem", marginTop: "var(--margin-top)" }}
+        style={{ fontSize: "2.4rem", marginTop: "var(--margin-top)" }}
       >
         Gallery
       </div>
@@ -94,7 +94,7 @@ export default async function Slug({
       />
       <div
         className="cursive"
-        style={{ fontSize: "2.5rem", marginTop: "var(--margin-top)" }}
+        style={{ fontSize: "2.4rem", marginTop: "var(--margin-top)" }}
       >
         Location
       </div>
