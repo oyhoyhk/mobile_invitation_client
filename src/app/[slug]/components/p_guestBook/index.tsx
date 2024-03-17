@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import React, { useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
 import DeleteModal from "./DeleteModal";
+import { hexToRgba } from "@/app/lib/hexToRgba";
 
 export default function GuestBook({
   id,
@@ -36,7 +37,7 @@ export default function GuestBook({
       <legend>방명록</legend>
       <EditButton color={buttonColor} onClick={() => setToggle(true)} />
       {list.map((info, index) => (
-        <GuestBookInfo key={index}>
+        <GuestBookInfo key={index} color={hexToRgba(buttonColor, 0.5)}>
           <Title>
             <Name>{info.name}</Name>
             <RightInfo>
@@ -61,8 +62,8 @@ export default function GuestBook({
   );
 }
 
-const GuestBookInfo = styled.div`
-  background: #f5e3e24d;
+const GuestBookInfo = styled.div<{ color: string }>`
+  background: ${({ color }) => color};
   border-radius: 4px;
   width: 100%;
   height: 108px;

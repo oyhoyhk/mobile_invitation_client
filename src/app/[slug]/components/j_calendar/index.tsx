@@ -1,17 +1,22 @@
 "use client";
 import styles from "./calendar.module.css";
-import HeartSVG from "../../../../assets/heart.svg";
+import HeartSVG from "../../../../assets/heart";
 import { useRef } from "react";
 import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-export default function Calendar({ dateString }: { dateString: string }) {
+export default function Calendar({
+  dateString,
+  color,
+}: {
+  dateString: string;
+  color: string;
+}) {
   const conRef = useRef<HTMLDivElement>(null);
   useScrollFadeIn(conRef);
 
   const date = new Date(dateString);
-  const color = "pink";
   const opacity = "1";
 
   // 년도와 월을 추출합니다.
@@ -33,23 +38,31 @@ export default function Calendar({ dateString }: { dateString: string }) {
   const emptyDays = [...Array(firstDayOfWeekIndex).keys()];
 
   return (
-    <div className={styles.container + " con"} ref={conRef}>
-      {days.map((day) => (
-        <div key={day} className={styles.dayName}>
-          {day}
-        </div>
-      ))}
-      {emptyDays.map((_, index) => (
-        <div key={`empty-${index}`} className={styles.empty}></div>
-      ))}
-      {Array.from({ length: numberOfDaysInMonth }, (_, index) => index + 1).map(
-        (date) => (
+    <div className={"con"} ref={conRef}>
+      <div
+        style={{ fontSize: "22px", marginTop: "50px", marginBottom: "50px" }}
+      >
+        {month}월
+      </div>
+      <div className={styles.container}>
+        {days.map((day) => (
+          <div key={day} className={styles.dayName}>
+            {day}
+          </div>
+        ))}
+        {emptyDays.map((_, index) => (
+          <div key={`empty-${index}`} className={styles.empty}></div>
+        ))}
+        {Array.from(
+          { length: numberOfDaysInMonth },
+          (_, index) => index + 1
+        ).map((date) => (
           <div key={`date-${date}`} className={styles.date}>
-            {dateString && date === day && <HeartSVG />}
+            {dateString && date === day && <HeartSVG color={color} />}
             {<div className={styles.dateValue}>{date}</div>}
           </div>
-        )
-      )}
+        ))}
+      </div>
     </div>
   );
 }

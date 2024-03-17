@@ -18,6 +18,7 @@ import Attendance from "./components/o_attendance";
 import GuestBook from "./components/p_guestBook";
 import FinalPhoto from "./components/q_finalPhoto";
 import Footer from "./components/r_footer";
+import { hexToRgba } from "../lib/hexToRgba";
 
 async function getData(id: string) {
   const response = await fetch(`${process.env.IMAGE_URL}api/wedding/${id}`);
@@ -32,6 +33,8 @@ export default async function Slug({
   const id = searchParams.id;
   const data = await getData(id);
   const images = data.images.map((image: { url: string }) => image.url);
+  const { color, opacity } = JSON.parse(data.heartInfo);
+  console.log(color, opacity);
   return (
     <div className={styles.container} style={{ background: data.themeColor }}>
       <Header />
@@ -76,7 +79,10 @@ export default async function Slug({
       >
         Our Day
       </div>
-      <Calendar dateString={data.date} />
+      <Calendar
+        dateString={data.date}
+        color={hexToRgba(color, Number(opacity))}
+      />
 
       <Gallery
         images={images.filter((image: string) => image.includes("gallery"))}
