@@ -1,32 +1,28 @@
 .wrapper {
-  height: 95%;
-  width: 460px;
-  transform: rotateZ(-90deg);
   text-align: right;
   user-select: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
-  flex-direction: row-reverse;
+  align-items: flex-start;
 }
 .wrapper > div {
   width: 200px;
-  height: 150px;
   margin: 10px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
+
 .wrapper img {
   border-radius: 0.6rem;
-  transform: rotateZ(90deg);
   border-radius: 0.5rem;
   width: 100%;
+  height: auto;
 }
 
 .container {
   width: 90%;
-  height: 500px;
   overflow-x: hidden;
   margin: 0 auto;
   margin-top: 25px;

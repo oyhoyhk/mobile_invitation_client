@@ -19,6 +19,9 @@ import GuestBook from "./components/p_guestBook";
 import FinalPhoto from "./components/q_finalPhoto";
 import Footer from "./components/r_footer";
 import { hexToRgba } from "../lib/hexToRgba";
+import { useRecoilValue } from "recoil";
+import { galleryState } from "../lib/atom";
+import GalleryExtension from "./components/z_etc/GalleryExtension";
 
 async function getData(id: string) {
   const response = await fetch(`${process.env.IMAGE_URL}api/wedding/${id}`);
@@ -34,7 +37,6 @@ export default async function Slug({
   const data = await getData(id);
   const images = data.images.map((image: { url: string }) => image.url);
   const { color, opacity } = JSON.parse(data.heartInfo);
-  console.log(color, opacity);
   return (
     <div className={styles.container} style={{ background: data.themeColor }}>
       <Header />
