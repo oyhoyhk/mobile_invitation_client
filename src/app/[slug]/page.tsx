@@ -46,13 +46,7 @@ export default async function Slug({
       <MainPhoto
         src={images.filter((image: string) => image.includes("mainPhoto"))[0]}
       />
-      <div
-        className="cursive"
-        style={{ fontSize: "2.4rem", marginTop: "var(--margin-top)" }}
-      >
-        Invite you
-      </div>
-      <div style={{ marginTop: "25px" }}>소중한 분들을 초대합니다</div>
+
       <SecondDescription description={data.secondDescription} />
       <div
         style={{
@@ -83,37 +77,35 @@ export default async function Slug({
         Our Day
       </div>
       <Calendar dateString={data.date} />
-      <div
-        className="cursive"
-        style={{ fontSize: "2.4rem", marginTop: "var(--margin-top)" }}
-      >
-        Gallery
-      </div>
+
       <Gallery
         images={images.filter((image: string) => image.includes("gallery"))}
       />
-      <div
-        className="cursive"
-        style={{ fontSize: "2.4rem", marginTop: "var(--margin-top)" }}
-      >
-        Location
-      </div>
-      <Location location={data.locationInfo} />
+
+      <Location location={data.locationInfo} buttonColor={data.buttonColor} />
       <Transportation transportation={data.transportInfo} />
       <Pigeon
         style={{
           margin: "var(--margin-top) auto 0 auto",
         }}
       />
-      <AccountInfo account={data.accountInfo} />
-      <Attendance attendanceMessage={data.attendanceMessage} />
-      <GuestBook id={id} />
+      <AccountInfo account={data.accountInfo} buttonColor={data.buttonColor} />
+      <Attendance
+        buttonColor={data.buttonColor}
+        attendanceMessage={data.attendanceMessage}
+      />
+      <GuestBook buttonColor={data.buttonColor} id={id} />
       <FinalPhoto
         src={images.filter((image: string) => image.includes("finalPhoto"))[0]}
         finalPhotoColor={data.finalPhotoColor}
         finalPhotoText={data.finalPhotoText}
       />
-      <button className={styles.button}>공유하기</button>
+      <button
+        style={{ background: data.buttonColor }}
+        className={styles.button}
+      >
+        공유하기
+      </button>
       <Footer />
     </div>
   );

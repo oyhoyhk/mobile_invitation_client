@@ -5,13 +5,31 @@ import React, { useRef, useState } from "react";
 import Arrow from "../../../../assets/arrowDown.svg";
 import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 
-export default function AccountInfo({ account }: { account: string }) {
+function hexToRgba(hex: string, opacity: number) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+}
+
+export default function AccountInfo({
+  account,
+  buttonColor,
+}: {
+  account: string;
+  buttonColor: string;
+}) {
   const conRef = useRef<HTMLDivElement>(null);
   useScrollFadeIn(conRef);
 
   const accountInfo = JSON.parse(account);
   const [groomToggle, setGroomToggle] = useState(false);
   const [brideToggle, setBrideToggle] = useState(false);
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+  };
 
   return (
     <Container className="con" ref={conRef}>
@@ -22,12 +40,15 @@ export default function AccountInfo({ account }: { account: string }) {
   계좌번호를 기재하였습니다.
   너그러운 마음으로 양해 부탁드립니다.`}
       </Annoucement>
-      <Button onClick={() => setGroomToggle((prev) => !prev)}>
+      <Button
+        style={{ background: buttonColor }}
+        onClick={() => setGroomToggle((prev) => !prev)}
+      >
         <div />
         신랑측 계좌번호
         <Arrow className={groomToggle ? "rotate" : ""} />
       </Button>
-      <AccountContainer>
+      <AccountContainer style={{ background: hexToRgba(buttonColor, 0.5) }}>
         {accountInfo.list
           .filter((el: any) => el.type === "groom")
           .map((el: any, idx: number) => (
@@ -48,15 +69,27 @@ export default function AccountInfo({ account }: { account: string }) {
                   <span>{el.accountHolder}</span>
                 </div>
               </div>
-              <button>복사하기</button>
+              <button
+                style={{ background: buttonColor }}
+                onClick={() =>
+                  copyToClipboard(
+                    `${el.bank} ${el.accountHolder} ${el.accountNumber}`
+                  )
+                }
+              >
+                복사하기
+              </button>
             </Account>
           ))}
       </AccountContainer>
-      <Button onClick={() => setBrideToggle((prev) => !prev)}>
+      <Button
+        style={{ background: buttonColor }}
+        onClick={() => setBrideToggle((prev) => !prev)}
+      >
         <div />
         신부측 계좌번호 <Arrow className={brideToggle ? "rotate" : ""} />
       </Button>
-      <AccountContainer>
+      <AccountContainer style={{ background: hexToRgba(buttonColor, 0.5) }}>
         {accountInfo.list
           .filter((el: any) => el.type === "bride")
           .map((el: any, idx: number) => (
@@ -77,11 +110,19 @@ export default function AccountInfo({ account }: { account: string }) {
                   <span>{el.accountHolder}</span>
                 </div>
               </div>
-              <button>복사하기</button>
+              <button
+                style={{ background: buttonColor }}
+                onClick={() =>
+                  copyToClipboard(
+                    `${el.bank} ${el.accountHolder} ${el.accountNumber}`
+                  )
+                }
+              >
+                복사하기
+              </button>
             </Account>
           ))}
       </AccountContainer>
-      co
     </Container>
   );
 }

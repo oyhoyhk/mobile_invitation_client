@@ -21,7 +21,13 @@ const buttons = [
   },
 ];
 
-export default function Location({ location }: { location: string }) {
+export default function Location({
+  location,
+  buttonColor,
+}: {
+  location: string;
+  buttonColor: string;
+}) {
   const naver: any = useNaverMap();
   const ref = useRef<HTMLDivElement>(null);
   const conRef = useRef<HTMLDivElement>(null);
@@ -45,6 +51,16 @@ export default function Location({ location }: { location: string }) {
 
   return (
     <Container ref={conRef} className="con">
+      <div
+        className="cursive"
+        style={{
+          fontSize: "2.4rem",
+          marginTop: "var(--margin-top)",
+          marginBottom: "25px",
+        }}
+      >
+        Location
+      </div>
       <CustomDivider />
       <Text className={locationInfo.detail ? "" : "empty"}>
         {locationInfo.detail || "ex) 로즈레터 호텔 10층 그랜드홀"}
@@ -60,7 +76,7 @@ export default function Location({ location }: { location: string }) {
         {"Tel. " + (locationInfo.phone || "ex) 02-000-000")}
       </Text>
       <MapContainer ref={ref} />
-      <ButtonContainer>
+      <ButtonContainer color={buttonColor}>
         {buttons.map((info) => (
           <Button key={info.name}>
             <Icon img={info.img} />
@@ -72,12 +88,12 @@ export default function Location({ location }: { location: string }) {
   );
 }
 
-const ButtonContainer = styled.div`
+const ButtonContainer = styled.div<{ color: string }>`
   width: 90%;
   height: 40px;
   border-radius: 0.8rem;
   border: 1px solid rgba(129, 122, 94, 0.3);
-  background: #f5e3e2;
+  background: ${({ color }) => color};
   margin: 0 auto;
   margin-top: 25px;
   display: flex;

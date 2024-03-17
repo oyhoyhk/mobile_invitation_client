@@ -6,7 +6,13 @@ import React, { useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
 import DeleteModal from "./DeleteModal";
 
-export default function GuestBook({ id }: { id: string }) {
+export default function GuestBook({
+  id,
+  buttonColor,
+}: {
+  id: string;
+  buttonColor: string;
+}) {
   const conRef = useRef<HTMLFieldSetElement>(null);
   useScrollFadeIn(conRef);
 
@@ -28,7 +34,7 @@ export default function GuestBook({ id }: { id: string }) {
   return (
     <Container ref={conRef} className="con">
       <legend>방명록</legend>
-      <EditButton onClick={() => setToggle(true)} />
+      <EditButton color={buttonColor} onClick={() => setToggle(true)} />
       {list.map((info, index) => (
         <GuestBookInfo key={index}>
           <Title>
@@ -41,7 +47,7 @@ export default function GuestBook({ id }: { id: string }) {
           <Content>{info.title}</Content>
         </GuestBookInfo>
       ))}
-      <Button>더보기</Button>
+      <Button style={{ background: buttonColor }}>더보기</Button>
       {toggle && <Modal id={id} setToggle={setToggle} />}
       {deleteModal && (
         <DeleteModal
@@ -114,11 +120,11 @@ const Content = styled.p`
   margin-top: 25px;
 `;
 
-const EditButton = styled.button`
+const EditButton = styled.button<{ color: string }>`
   width: 50px;
   height: 33px;
   border: 1px solid rgba(129, 122, 94, 0.3);
-  background: #f5e3e2;
+  background: ${({ color }) => color};
   border-radius: 5px;
   background-image: url("edit.png");
   background-repeat: no-repeat;

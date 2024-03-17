@@ -7,8 +7,10 @@ import Modal from "./Modal";
 
 export default function Attendance({
   attendanceMessage,
+  buttonColor,
 }: {
   attendanceMessage: string;
+  buttonColor: string;
 }) {
   const conRef = useRef<HTMLFieldSetElement>(null);
   useScrollFadeIn(conRef);
@@ -18,7 +20,12 @@ export default function Attendance({
     <Container ref={conRef} className="con">
       <legend>참석의사 전달하기</legend>
       <p>{attendanceMessage}</p>
-      <Button onClick={() => setToggle(true)}>참석의사 전달하기</Button>
+      <Button
+        style={{ background: buttonColor }}
+        onClick={() => setToggle(true)}
+      >
+        참석의사 전달하기
+      </Button>
       {toggle && <Modal setToggle={setToggle} />}
     </Container>
   );

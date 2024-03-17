@@ -13,6 +13,15 @@ export default function SecondDescription({
   useScrollFadeIn(conRef);
   return (
     <div className={styles.container + " con"} ref={conRef}>
+      <div
+        className="cursive"
+        style={{ fontSize: "2.4rem", marginTop: "var(--margin-top)" }}
+      >
+        Invite you
+      </div>
+      <div style={{ marginTop: "25px", marginBottom: "50px" }}>
+        소중한 분들을 초대합니다
+      </div>
       {description}
     </div>
   );

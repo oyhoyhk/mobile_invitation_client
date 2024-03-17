@@ -12,6 +12,16 @@ export default function Gallery({ images }: { images: string[] }) {
   const serverUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   return (
     <div className={styles.container + " con"} ref={conRef}>
+      <div
+        className="cursive"
+        style={{
+          fontSize: "2.4rem",
+          marginTop: "var(--margin-top)",
+          marginBottom: "50px",
+        }}
+      >
+        Gallery
+      </div>
       <div className={styles.wrapper}>
         {images.map((image) => (
           <div key={image}>
