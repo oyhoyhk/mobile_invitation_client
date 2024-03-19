@@ -4,8 +4,10 @@ export default function Modal({
   id,
   setToggle,
   setList,
+  buttonColor,
 }: {
   id: string;
+  buttonColor: string;
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
   setList: React.Dispatch<
     React.SetStateAction<
@@ -76,7 +78,9 @@ export default function Modal({
           placeholder="방명록 메시지"
         />
       </InputContainer>
-      <Button type="submit">작성하기</Button>
+      <Button style={{ background: buttonColor }} type="submit">
+        작성하기
+      </Button>
     </Container>
   );
 }

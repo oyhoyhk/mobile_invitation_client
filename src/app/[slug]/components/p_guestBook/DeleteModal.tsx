@@ -3,11 +3,13 @@ import styled from "@emotion/styled";
 export default function DeleteModal({
   id,
   idx,
+  buttonColor,
   setList,
   setDeleteModal,
 }: {
   id: string;
   idx: number;
+  buttonColor: string;
   setList: React.Dispatch<
     React.SetStateAction<
       {
@@ -66,7 +68,9 @@ export default function DeleteModal({
           placeholder="비밀번호"
         />
       </InputContainer>
-      <Button type="submit">삭제하기</Button>
+      <Button style={{ background: buttonColor }} type="submit">
+        삭제하기
+      </Button>
     </Container>
   );
 }

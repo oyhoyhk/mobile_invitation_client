@@ -54,6 +54,9 @@ export default function GuestBook({
           <Content>{info.title}</Content>
         </GuestBookInfo>
       ))}
+      {list.length === 0 && (
+        <p style={{ marginTop: "100px" }}>따뜻한 마음을 전해주세요</p>
+      )}
       {list.length < totalLength && (
         <Button
           style={{ background: buttonColor }}
@@ -62,12 +65,20 @@ export default function GuestBook({
           더보기
         </Button>
       )}
-      {toggle && <Modal id={id} setToggle={setToggle} setList={setList} />}
+      {toggle && (
+        <Modal
+          id={id}
+          setToggle={setToggle}
+          setList={setList}
+          buttonColor={buttonColor}
+        />
+      )}
       {deleteModal && (
         <DeleteModal
           id={id}
           idx={deleteModal}
           setList={setList}
+          buttonColor={buttonColor}
           setDeleteModal={setDeleteModal}
         />
       )}
@@ -151,6 +162,7 @@ const EditButton = styled.button<{ color: string }>`
 const Container = styled.fieldset`
   width: 90%;
   margin: 0 auto;
+  min-height: 250px;
   margin-top: var(--margin-top);
   box-sizing: border-box;
   font-size: 0.9rem;
