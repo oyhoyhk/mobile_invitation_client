@@ -40,6 +40,16 @@ export default function Calendar({
   return (
     <div className={"con"} ref={conRef}>
       <div
+        className="cursive"
+        style={{
+          fontSize: "2.3rem",
+          marginTop: "var(--margin-top)",
+          marginLeft: "20px",
+        }}
+      >
+        Our Day
+      </div>
+      <div
         style={{ fontSize: "22px", marginTop: "50px", marginBottom: "50px" }}
       >
         {month}월

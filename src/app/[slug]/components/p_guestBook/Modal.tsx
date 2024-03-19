@@ -3,9 +3,20 @@ import styled from "styled-components";
 export default function Modal({
   id,
   setToggle,
+  setList,
 }: {
   id: string;
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  setList: React.Dispatch<
+    React.SetStateAction<
+      {
+        idx: number;
+        name: string;
+        createdAt: string;
+        title: string;
+      }[]
+    >
+  >;
 }) {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,6 +38,15 @@ export default function Modal({
       }),
     });
     setToggle(false);
+    setList((prev) => [
+      {
+        idx: prev.length + 1,
+        name: target.name.value,
+        createdAt: new Date().toISOString(),
+        title: target.message.value,
+      },
+      ...prev,
+    ]);
   };
   return (
     <Container onSubmit={onSubmit}>
@@ -40,7 +60,7 @@ export default function Modal({
         <input type="text" id="guest_name" name="name" placeholder="성함" />
       </InputContainer>
       <InputContainer>
-        <label htmlFor="guest_password">성함</label>
+        <label htmlFor="guest_password">비밀번호</label>
         <input
           type="password"
           id="guest_password"
@@ -75,6 +95,7 @@ const InputContainer = styled.div`
     border-radius: 8px;
     padding: 8px 16px;
     outline: none;
+    font-family: "MaruBuri-Regular", "Inter", serif;
   }
 
   & > textarea {
@@ -90,6 +111,7 @@ const InputContainer = styled.div`
     justify-content: center;
     white-space: pre-line;
     height: 130px;
+    font-family: "MaruBuri-Regular", "Inter", serif;
 
     &::placeholder {
       text-align: center;

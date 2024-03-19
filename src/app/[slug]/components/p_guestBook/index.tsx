@@ -19,18 +19,24 @@ export default function GuestBook({
 
   const [toggle, setToggle] = useState(false);
   const [deleteModal, setDeleteModal] = useState<number | null>(null);
+  const [pageCount, setPageCount] = useState(1);
+  const [totalLength, setTotalLength] = useState(0);
 
   const [list, setList] = useState<
     { idx: number; name: string; createdAt: string; title: string }[]
   >([]);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_IMAGE_URL}api/guestbook?id=${id}`)
+    fetch(
+      `${process.env.NEXT_PUBLIC_IMAGE_URL}api/guestbook?id=${id}&page=${pageCount}`
+    )
       .then((res) => res.json())
       .then((res) => {
-        setList(res);
+        setList((prev) => [...res.guestBooks]);
+        setTotalLength(res.totalLength);
+        console.log("why count two");
       });
-  }, []);
+  }, [pageCount]);
 
   return (
     <Container ref={conRef} className="con">
@@ -48,8 +54,15 @@ export default function GuestBook({
           <Content>{info.title}</Content>
         </GuestBookInfo>
       ))}
-      <Button style={{ background: buttonColor }}>더보기</Button>
-      {toggle && <Modal id={id} setToggle={setToggle} />}
+      {list.length < totalLength && (
+        <Button
+          style={{ background: buttonColor }}
+          onClick={() => setPageCount((prev) => prev + 1)}
+        >
+          더보기
+        </Button>
+      )}
+      {toggle && <Modal id={id} setToggle={setToggle} setList={setList} />}
       {deleteModal && (
         <DeleteModal
           id={id}

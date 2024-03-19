@@ -42,6 +42,7 @@ export default async function Slug({
       <Header />
       <Name name={data.name} />
       <ClippedImage
+        color={data.themeColor}
         src={
           images.filter((image: string) => image.includes("clippedImage"))[0]
         }
@@ -75,12 +76,7 @@ export default async function Slug({
       <TwoPhotos
         urls={images.filter((image: string) => image.includes("twoPhoto"))}
       />
-      <div
-        className="cursive"
-        style={{ fontSize: "2.4rem", marginTop: "var(--margin-top)" }}
-      >
-        Our Day
-      </div>
+
       <Calendar
         dateString={data.date}
         color={hexToRgba(color, Number(opacity))}

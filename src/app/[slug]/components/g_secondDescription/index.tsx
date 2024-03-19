@@ -15,7 +15,11 @@ export default function SecondDescription({
     <div className={styles.container + " con"} ref={conRef}>
       <div
         className="cursive"
-        style={{ fontSize: "2.4rem", marginTop: "var(--margin-top)" }}
+        style={{
+          fontSize: "2.3rem",
+          marginTop: "var(--margin-top)",
+          marginLeft: "20px",
+        }}
       >
         Invite you
       </div>

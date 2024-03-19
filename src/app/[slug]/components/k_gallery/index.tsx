@@ -36,7 +36,6 @@ export default function Gallery({ images }: { images: string[] }) {
 
         const parentWidth = parent.getBoundingClientRect().width;
 
-        console.log("moveChild", cur, e.deltaX, parseInt(width));
         if (
           cur + e.deltaX < 0 ||
           cur + e.deltaX + parentWidth > parseInt(width)
@@ -49,7 +48,6 @@ export default function Gallery({ images }: { images: string[] }) {
     const parent = parentRef.current;
     if (!parent) return;
     parent.addEventListener("wheel", moveChild);
-    console.log("add wheel event");
     return () => {
       parent.removeEventListener("wheel", moveChild);
     };
@@ -60,8 +58,9 @@ export default function Gallery({ images }: { images: string[] }) {
       <div
         className="cursive"
         style={{
-          fontSize: "2.4rem",
+          fontSize: "2.3rem",
           marginTop: "var(--margin-top)",
+          marginLeft: "20px",
           marginBottom: "50px",
         }}
       >

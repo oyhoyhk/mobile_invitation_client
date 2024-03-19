@@ -7,7 +7,7 @@ export default function Name({ name }: { name: string }) {
       <div>
         <div
           className={styles.block + " cursive"}
-          style={{ fontSize: "14px", marginLeft: "10px" }}
+          style={{ fontSize: "15px", marginLeft: "10px" }}
         >
           groom
         </div>
@@ -27,7 +27,7 @@ export default function Name({ name }: { name: string }) {
       <div>
         <div
           className={styles.block + " cursive"}
-          style={{ fontSize: "14px", marginLeft: "10px" }}
+          style={{ fontSize: "15px", marginLeft: "10px" }}
         >
           bride
         </div>

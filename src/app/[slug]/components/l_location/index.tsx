@@ -54,9 +54,10 @@ export default function Location({
       <div
         className="cursive"
         style={{
-          fontSize: "2.4rem",
+          fontSize: "2.3rem",
           marginTop: "var(--margin-top)",
           marginBottom: "25px",
+          marginLeft: "20px",
         }}
       >
         Location
@@ -69,12 +70,11 @@ export default function Location({
       <Text className={locationInfo.address ? "" : "empty"}>
         {locationInfo.address || "ex) 서울시 서초구 로즈로"}
       </Text>
-      <Text
-        className={locationInfo.phone ? "" : "empty"}
-        style={{ marginTop: "10px" }}
-      >
-        {"Tel. " + (locationInfo.phone || "ex) 02-000-000")}
-      </Text>
+      {locationInfo.phone && (
+        <Text style={{ marginTop: "10px" }}>
+          {"Tel. " + (locationInfo.phone || "ex) 02-000-000")}
+        </Text>
+      )}
       <MapContainer ref={ref} />
       <ButtonContainer color={buttonColor}>
         {buttons.map((info) => (

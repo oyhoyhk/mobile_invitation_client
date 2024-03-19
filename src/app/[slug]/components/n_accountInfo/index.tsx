@@ -34,7 +34,11 @@ export default function AccountInfo({
   너그러운 마음으로 양해 부탁드립니다.`}
       </Annoucement>
       <Button
-        style={{ background: buttonColor }}
+        style={{
+          background: buttonColor,
+          borderBottomLeftRadius: groomToggle ? "0px" : "8px",
+          borderBottomRightRadius: groomToggle ? "0px" : "8px",
+        }}
         onClick={() => setGroomToggle((prev) => !prev)}
       >
         <div />
@@ -76,7 +80,11 @@ export default function AccountInfo({
           ))}
       </AccountContainer>
       <Button
-        style={{ background: buttonColor }}
+        style={{
+          background: buttonColor,
+          borderBottomLeftRadius: brideToggle ? "0px" : "8px",
+          borderBottomRightRadius: brideToggle ? "0px" : "8px",
+        }}
         onClick={() => setBrideToggle((prev) => !prev)}
       >
         <div />
