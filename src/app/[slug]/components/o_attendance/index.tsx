@@ -26,7 +26,7 @@ export default function Attendance({
       >
         참석의사 전달하기
       </Button>
-      {toggle && <Modal setToggle={setToggle} />}
+      {toggle && <Modal setToggle={setToggle} color={buttonColor} />}
     </Container>
   );
 }

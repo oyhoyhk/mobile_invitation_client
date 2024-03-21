@@ -32,12 +32,13 @@ export default function Transportation({
             {typeof info.routes === "object" &&
               info.routes.length > 0 &&
               info.routes.map((route: any, index: number) => (
-                <div className={styles.route} key={route}>
-                  {numberMapper[index]} {route}
+                <div className={styles.route + " numbers"} key={route}>
+                  <div className="number">{numberMapper[index]}</div>
+                  <div className="route">{route}</div>
                 </div>
               ))}
             {typeof info.route === "string" && info.route && (
-              <div className={styles.route + " textarea"}>{info.route}</div>
+              <div className={styles.routes + " textarea"}>{info.route}</div>
             )}
           </div>
         ))}

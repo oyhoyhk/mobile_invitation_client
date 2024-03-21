@@ -14,6 +14,7 @@ import Transportation from "./components/m_transportation";
 import AccountInfo from "./components/n_accountInfo";
 import styles from "./page.module.css";
 import Pigeon from "../../assets/pigeon.svg";
+import Candle from "../../assets/candle.svg";
 import Attendance from "./components/o_attendance";
 import GuestBook from "./components/p_guestBook";
 import FinalPhoto from "./components/q_finalPhoto";
@@ -48,6 +49,13 @@ export default async function Slug({
         }
       />
       <Info info={data.weddingInfo} />
+      <Candle
+        style={{
+          margin: "var(--margin-top) auto 25px auto",
+          width: "48px",
+          height: "55px",
+        }}
+      />
       <FirstDescription description={data.firstDescription} />
       <MainPhoto
         src={images.filter((image: string) => image.includes("mainPhoto"))[0]}
@@ -58,7 +66,7 @@ export default async function Slug({
         style={{
           width: "80%",
           height: "1px",
-          background: "lightgray",
+          background: "#817a5e4d",
           margin: "0 auto",
           marginTop: "var(--margin-top)",
         }}
@@ -68,7 +76,7 @@ export default async function Slug({
         style={{
           width: "80%",
           height: "1px",
-          background: "lightgray",
+          background: "#817a5e4d",
           margin: "0 auto",
           marginTop: "var(--margin-top)",
         }}

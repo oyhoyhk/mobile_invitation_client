@@ -26,6 +26,16 @@
   user-select: none;
 
   scrollbar-width: 0;
+  color: black;
+}
+
+input {
+  background: white;
+  color: black;
+}
+
+button {
+  color: black;
 }
 
 *::-webkit-scrollbar {

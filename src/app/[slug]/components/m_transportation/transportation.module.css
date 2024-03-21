@@ -8,8 +8,8 @@
   white-space: pre-line;
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
-  margin-top: 45px;
+  margin-bottom: 5px;
+  margin-top: 30px;
 }
 
 .icon {
@@ -22,20 +22,32 @@
 
 .route {
   padding-left: 35px;
-  margin-bottom: 15px;
-  white-space: pre-line;
+  margin-bottom: 5px;
   line-height: 1.5rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: flex;
+  align-items: flex-start;
 }
-.route.textarea {
+
+.route > div:first-child {
+  margin-right: 5px;
+}
+
+.route > div:last-child {
+  flex: 1;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.routes {
+  padding-left: 35px;
+  margin-bottom: 5px;
+  line-height: 1.5rem;
   white-space: pre-line;
 }
 
 .container {
   margin: 0 auto;
-  margin-top: var(--margin-top);
+  margin-top: 80px;
   width: 90%;
   margin-bottom: var(--margin-top);
 }

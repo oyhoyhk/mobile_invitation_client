@@ -3,6 +3,7 @@ import styles from "./calendar.module.css";
 import HeartSVG from "../../../../assets/heart";
 import { useRef } from "react";
 import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
+import styled from "@emotion/styled";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -17,7 +18,6 @@ export default function Calendar({
   useScrollFadeIn(conRef);
 
   const date = new Date(dateString);
-  const opacity = "1";
 
   // 년도와 월을 추출합니다.
   const year = date.getFullYear();
@@ -68,7 +68,9 @@ export default function Calendar({
           (_, index) => index + 1
         ).map((date) => (
           <div key={`date-${date}`} className={styles.date}>
-            {dateString && date === day && <HeartSVG color={color} />}
+            {dateString && date === day && (
+              <Circle style={{ background: color }} />
+            )}
             {<div className={styles.dateValue}>{date}</div>}
           </div>
         ))}
@@ -76,3 +78,14 @@ export default function Calendar({
     </div>
   );
 }
+
+const Circle = styled.div`
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border-radius: 50%;
+`;

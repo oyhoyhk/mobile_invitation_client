@@ -54,7 +54,7 @@ export default function Modal({
     <Container onSubmit={onSubmit}>
       <Header>
         <div />
-        <div>참석의사 전달하기</div>
+        <div>방명록</div>
         <div onClick={() => setToggle(false)}>×</div>
       </Header>
       <InputContainer>

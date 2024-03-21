@@ -24,8 +24,8 @@ export default function Gallery({ images }: { images: string[] }) {
   };
 
   useEffect(() => {
+    let moveCur = 0;
     const moveChild = (e: WheelEvent) => {
-      let cur = 0;
       if (e.deltaX > 0 || e.deltaX < 0) {
         e.preventDefault();
         e.stopPropagation();
@@ -37,17 +37,17 @@ export default function Gallery({ images }: { images: string[] }) {
         const parentWidth = parent.getBoundingClientRect().width;
 
         if (
-          cur + e.deltaX < 0 ||
-          cur + e.deltaX + parentWidth > parseInt(width)
+          moveCur + e.deltaX < 0 ||
+          moveCur + e.deltaX + parentWidth > parseInt(width)
         )
           return;
-        cur += e.deltaX;
-        child.style.transform = `translateX(-${cur}px)`;
+        moveCur += e.deltaX;
+        child.style.transform = `translateX(-${moveCur}px)`;
       }
     };
+    let touchCur = 0;
 
     const touchChild = (e: TouchEvent) => {
-      let cur = 0;
       const parent = parentRef.current;
       const child = childRef.current;
 
@@ -56,12 +56,12 @@ export default function Gallery({ images }: { images: string[] }) {
       const parentWidth = parent.getBoundingClientRect().width;
 
       if (
-        cur + e.touches[0].clientX < 0 ||
-        cur + e.touches[0].clientX + parentWidth > parseInt(width)
+        touchCur + e.touches[0].clientX < 0 ||
+        touchCur + e.touches[0].clientX + parentWidth > parseInt(width)
       )
         return;
-      cur += e.touches[0].clientX;
-      child.style.transform = `translateX(-${cur}px)`;
+      touchCur += e.touches[0].clientX;
+      child.style.transform = `translateX(-${touchCur}px)`;
     };
 
     const parent = parentRef.current;
@@ -83,6 +83,7 @@ export default function Gallery({ images }: { images: string[] }) {
     const isMobile = mobileKeywords.some((keyword) =>
       userAgent.includes(keyword)
     );
+    console.log(isMobile, userAgent);
     if (isMobile) {
       parent.addEventListener("touchmove", touchChild, { passive: false });
     } else {

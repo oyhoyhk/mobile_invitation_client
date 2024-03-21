@@ -62,7 +62,7 @@ export default function Location({
       >
         Location
       </div>
-      <CustomDivider />
+      <CustomDivider style={{ marginTop: "25px" }} />
       <Text className={locationInfo.detail ? "" : "empty"}>
         {locationInfo.detail || "ex) 로즈레터 호텔 10층 그랜드홀"}
       </Text>
@@ -165,7 +165,7 @@ const Container = styled.div`
 const CustomDivider = styled.div`
   width: 80%;
   height: 1px;
-  background: lightgray;
+  background: #817a5e4d;
   margin: 0 auto;
   margin-top: var(--margin-top);
 `;

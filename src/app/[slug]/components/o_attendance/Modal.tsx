@@ -2,8 +2,10 @@ import styled from "@emotion/styled";
 import React, { useState } from "react";
 
 export default function Modal({
+  color,
   setToggle,
 }: {
+  color: string;
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [receiver, setReceiver] = useState<"groom" | "bride" | null>(null);
@@ -122,7 +124,7 @@ export default function Modal({
           placeholder="총 1명 (본인포함)"
         />
       </InputContainer>
-      <Button>전달하기</Button>
+      <Button style={{ background: color }}>전달하기</Button>
     </Container>
   );
 }
