@@ -39,6 +39,33 @@ function showKakaoMap(lng: number, lat: number) {
   }
 }
 
+function showTmap(lng: number, lat: number) {
+  // 도착지 좌표 및 자동차 길찾기 URL 설정
+  const tmapUrl = `tmap://?app=tmap&eName=${encodeURIComponent(
+    "주소"
+  )}&eLat=${lat}&eLon=${lng}`;
+  const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
+  const openTmapUrl = "tmap://";
+
+  // 티맵 앱 존재 여부 확인
+  window.location.href = tmapUrl;
+}
+
+function showNaverMap(lng: number, lat: number) {
+  // 도착지 좌표 및 자동차 길찾기 URL 설정
+  const naverMapUrl = `nmap://route?dlat=${lat}&dlng=${lng}&slat=37.566535&slng=126.977945&appname=navermap`;
+  const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
+  const openNaverMapUrl = "nmap://open";
+
+  // 네이버 지도 앱 존재 여부 확인
+  if ((window.location.href = openNaverMapUrl)) {
+    // 앱이 존재할 경우 길찾기 실행
+    window.location.href = naverMapUrl;
+  } else {
+    // 앱이 없을 경우 앱스토어로 이동
+    window.location.href = appStoreUrl;
+  }
+}
 const buttons = [
   {
     img: "kakao.png",
@@ -48,12 +75,12 @@ const buttons = [
   {
     img: "tmap.png",
     name: "티맵",
-    onClick: () => console.log("tmap"),
+    onClick: showTmap,
   },
   {
     img: "naver_map.png",
     name: "네이버맵",
-    onClick: () => console.log("naver"),
+    onClick: showNaverMap,
   },
 ];
 
