@@ -29,7 +29,8 @@
   color: black;
 }
 
-input {
+input,
+textarea {
   background: white;
   color: black;
 }
