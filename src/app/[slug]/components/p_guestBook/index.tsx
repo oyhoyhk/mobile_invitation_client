@@ -6,6 +6,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
 import DeleteModal from "./DeleteModal";
 import { hexToRgba } from "@/app/lib/hexToRgba";
+import { useSetRecoilState } from "recoil";
+import { alarmState } from "@/app/lib/atom";
 
 export default function GuestBook({
   id,
@@ -21,6 +23,7 @@ export default function GuestBook({
   const [deleteModal, setDeleteModal] = useState<number | null>(null);
   const [pageCount, setPageCount] = useState(1);
   const [totalLength, setTotalLength] = useState(0);
+  const setAlarm = useSetRecoilState(alarmState);
 
   const [list, setList] = useState<
     { idx: number; name: string; createdAt: string; title: string }[]
@@ -35,6 +38,12 @@ export default function GuestBook({
         setList((prev) => [...res.guestBooks]);
         setTotalLength(res.totalLength);
         console.log("why count two");
+      })
+      .catch(() => {
+        setAlarm({
+          type: "error",
+          message: "방명록을 불러오는데 실패했습니다",
+        });
       });
   }, [pageCount]);
 

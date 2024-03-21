@@ -1,4 +1,6 @@
+import { alarmState } from "@/app/lib/atom";
 import styled from "@emotion/styled";
+import { useSetRecoilState } from "recoil";
 
 export default function DeleteModal({
   id,
@@ -22,6 +24,7 @@ export default function DeleteModal({
   >;
   setDeleteModal: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
+  const setAlarm = useSetRecoilState(alarmState);
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.target as typeof e.target & {
@@ -48,8 +51,10 @@ export default function DeleteModal({
       }
       setDeleteModal(null);
       setList((prev) => prev.filter((info) => info.idx !== idx));
+      setAlarm({ type: "success", message: "삭제되었습니다" });
     } catch (e) {
       console.error(e);
+      setAlarm({ type: "error", message: "삭제에 실패했습니다" });
     }
   };
   return (

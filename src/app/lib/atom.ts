@@ -7,3 +7,11 @@ export const galleryState = atom<{
   key: "galleryState",
   default: null,
 });
+
+export const alarmState = atom<{
+  type: "success" | "error";
+  message: string;
+} | null>({
+  key: "alarmState",
+  default: null,
+});

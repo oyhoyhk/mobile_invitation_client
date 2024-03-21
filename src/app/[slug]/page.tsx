@@ -23,14 +23,10 @@ import FinalPhoto from "./components/q_finalPhoto";
 import Footer from "./components/r_footer";
 import { hexToRgba } from "../lib/hexToRgba";
 import { RecoilRoot, useRecoilValue } from "recoil";
-import { galleryState } from "../lib/atom";
+import { alarmState, galleryState } from "../lib/atom";
 import GalleryExtension from "./components/z_etc/GalleryExtension";
 import { useEffect, useState } from "react";
-
-async function getData(id: string) {
-  const response = await fetch(`${process.env.IMAGE_URL}api/wedding/${id}`);
-  return response.json();
-}
+import Alarm from "./components/z_etc/Alarm";
 
 export default function Slug({
   searchParams,
@@ -41,6 +37,7 @@ export default function Slug({
 
   const [data, setData] = useState<any>(null);
   const galleryInfo = useRecoilValue(galleryState);
+  const alarm = useRecoilValue(alarmState);
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_IMAGE_URL}api/wedding/${id}`)
       .then((res) => res.json())
@@ -141,6 +138,7 @@ export default function Slug({
           list={images.filter((image: string) => image.includes("gallery"))}
         />
       )}
+      {alarm && <Alarm />}
     </div>
   );
 }

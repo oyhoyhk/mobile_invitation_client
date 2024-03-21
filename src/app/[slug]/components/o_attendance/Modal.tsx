@@ -1,5 +1,7 @@
+import { alarmState } from "@/app/lib/atom";
 import styled from "@emotion/styled";
 import React, { useState } from "react";
+import { useSetRecoilState } from "recoil";
 
 export default function Modal({
   color,
@@ -8,6 +10,7 @@ export default function Modal({
   color: string;
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const setAlarm = useSetRecoilState(alarmState);
   const [receiver, setReceiver] = useState<"groom" | "bride" | null>(null);
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,6 +54,7 @@ export default function Modal({
       }),
     });
     setToggle(false);
+    setAlarm({ type: "success", message: "전달되었습니다" });
   };
   return (
     <Container onSubmit={onSubmit}>
