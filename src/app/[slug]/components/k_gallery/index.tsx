@@ -24,8 +24,8 @@ export default function Gallery({ images }: { images: string[] }) {
   };
 
   useEffect(() => {
-    let cur = 0;
     const moveChild = (e: WheelEvent) => {
+      let cur = 0;
       if (e.deltaX > 0 || e.deltaX < 0) {
         e.preventDefault();
         e.stopPropagation();
@@ -47,6 +47,7 @@ export default function Gallery({ images }: { images: string[] }) {
     };
 
     const touchChild = (e: TouchEvent) => {
+      let cur = 0;
       const parent = parentRef.current;
       const child = childRef.current;
 
@@ -65,11 +66,34 @@ export default function Gallery({ images }: { images: string[] }) {
 
     const parent = parentRef.current;
     if (!parent) return;
-    parent.addEventListener("wheel", moveChild);
-    parent.addEventListener("touchmove", touchChild, { passive: false });
+    const userAgent = navigator.userAgent.toLowerCase();
+    const mobileKeywords = [
+      "android",
+      "webos",
+      "iphone",
+      "ipad",
+      "ipod",
+      "blackberry",
+      "iemobile",
+      "opera mini",
+      "mobile",
+      "windows phone",
+    ];
+
+    const isMobile = mobileKeywords.some((keyword) =>
+      userAgent.includes(keyword)
+    );
+    if (isMobile) {
+      parent.addEventListener("touchmove", touchChild, { passive: false });
+    } else {
+      parent.addEventListener("wheel", moveChild);
+    }
     return () => {
-      parent.removeEventListener("wheel", moveChild);
-      parent.removeEventListener("touchmove", touchChild);
+      if (isMobile) {
+        parent.removeEventListener("touchmove", touchChild);
+      } else {
+        parent.removeEventListener("wheel", moveChild);
+      }
     };
   }, []);
 
