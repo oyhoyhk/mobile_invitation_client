@@ -23,7 +23,7 @@ const kakaoClickHandler = (location: string) => {
   }
 };
 
-function showKakaoMap(lat: number, lng: number) {
+function showKakaoMap(lng: number, lat: number) {
   // 도착지 좌표 및 자동차 길찾기 URL 설정
   const kakaoMapUrl = `kakaomap://route?ep=${lat},${lng}&by=CAR`;
   const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
