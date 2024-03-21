@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 import { useEffect, useRef } from "react";
 import React from "react";
 
-const kakaoClickHandler = () => {
+const kakaoClickHandler = (location: string) => {
   // 모바일 환경인지 확인
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
     navigator.userAgent
@@ -14,19 +14,36 @@ const kakaoClickHandler = () => {
 
   // 모바일 환경일 경우 카카오맵 실행
   if (isMobile) {
-    const kakaoMapUrl = `kakaomap://route?ep=${encodeURIComponent("주소")}`;
+    const kakaoMapUrl = `kakaomap://route?ep=${encodeURIComponent(location)}`;
     window.location.href = kakaoMapUrl;
   } else {
     // PC 환경에서 처리
+    alert("모바일에서만 지원하는 기능입니다.");
     // ...
   }
 };
+
+function showKakaoMap(lat: number, lng: number) {
+  // 도착지 좌표 및 자동차 길찾기 URL 설정
+  const kakaoMapUrl = `kakaomap://route?ep=${lat},${lng}&by=CAR`;
+  const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
+  const openKakaoMapUrl = "kakaomap://open";
+
+  // 카카오맵 앱 존재 여부 확인
+  if ((window.location.href = openKakaoMapUrl)) {
+    // 앱이 존재할 경우 길찾기 실행
+    window.location.href = kakaoMapUrl;
+  } else {
+    // 앱이 없을 경우 앱스토어로 이동
+    window.location.href = appStoreUrl;
+  }
+}
 
 const buttons = [
   {
     img: "kakao.png",
     name: "카카오내비",
-    onClick: kakaoClickHandler,
+    onClick: showKakaoMap,
   },
   {
     img: "tmap.png",
@@ -53,6 +70,7 @@ export default function Location({
   const locationInfo = JSON.parse(location);
 
   useScrollFadeIn(conRef);
+  console.log(locationInfo);
   useEffect(() => {
     if (!naver || !ref.current || !locationInfo.address) return;
     const { x, y } = locationInfo;
@@ -97,7 +115,10 @@ export default function Location({
       <MapContainer ref={ref} />
       <ButtonContainer color={buttonColor}>
         {buttons.map((info) => (
-          <Button key={info.name} onClick={info.onClick}>
+          <Button
+            key={info.name}
+            onClick={() => info.onClick(locationInfo.x, locationInfo.y)}
+          >
             <Icon img={info.img} />
             <span>{info.name}</span>
           </Button>
