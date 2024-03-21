@@ -45,11 +45,31 @@ export default function Gallery({ images }: { images: string[] }) {
         child.style.transform = `translateX(-${cur}px)`;
       }
     };
+
+    const touchChild = (e: TouchEvent) => {
+      const parent = parentRef.current;
+      const child = childRef.current;
+
+      if (!parent || !child) return;
+
+      const parentWidth = parent.getBoundingClientRect().width;
+
+      if (
+        cur + e.touches[0].clientX < 0 ||
+        cur + e.touches[0].clientX + parentWidth > parseInt(width)
+      )
+        return;
+      cur += e.touches[0].clientX;
+      child.style.transform = `translateX(-${cur}px)`;
+    };
+
     const parent = parentRef.current;
     if (!parent) return;
     parent.addEventListener("wheel", moveChild);
+    parent.addEventListener("touchmove", touchChild, { passive: false });
     return () => {
       parent.removeEventListener("wheel", moveChild);
+      parent.removeEventListener("touchmove", touchChild);
     };
   }, []);
 
