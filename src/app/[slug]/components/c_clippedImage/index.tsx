@@ -4,20 +4,21 @@ import styles from "./clippedImage.module.css";
 import HeartClip from "@/assets/heartClip";
 import getImageUrl from "@/app/lib/getImageUrl";
 
-export default async function ClippedImage({
+export default function ClippedImage({
   color,
   src,
 }: {
   color: string;
   src: string;
 }) {
-  const imageUrl = await getImageUrl();
   return (
     <div className={styles.container}>
       <div
         className={styles.image}
         style={{
-          backgroundImage: `url(${imageUrl + src.replaceAll("\\", "/")})`,
+          backgroundImage: `url(${
+            process.env.NEXT_PUBLIC_IMAGE_URL + src.replaceAll("\\", "/")
+          })`,
           backgroundPosition: "center center",
           backgroundSize: "cover",
         }}

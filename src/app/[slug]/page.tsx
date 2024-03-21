@@ -1,3 +1,5 @@
+"use client";
+
 import Header from "./components/a_header";
 import Name from "./components/b_name";
 import ClippedImage from "./components/c_clippedImage";
@@ -20,24 +22,39 @@ import GuestBook from "./components/p_guestBook";
 import FinalPhoto from "./components/q_finalPhoto";
 import Footer from "./components/r_footer";
 import { hexToRgba } from "../lib/hexToRgba";
-import { useRecoilValue } from "recoil";
+import { RecoilRoot, useRecoilValue } from "recoil";
 import { galleryState } from "../lib/atom";
 import GalleryExtension from "./components/z_etc/GalleryExtension";
+import { useEffect, useState } from "react";
 
 async function getData(id: string) {
   const response = await fetch(`${process.env.IMAGE_URL}api/wedding/${id}`);
   return response.json();
 }
 
-export default async function Slug({
+export default function Slug({
   searchParams,
 }: {
   searchParams: { id: string };
 }) {
   const id = searchParams.id;
-  const data = await getData(id);
+
+  const [data, setData] = useState<any>(null);
+  const galleryInfo = useRecoilValue(galleryState);
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_IMAGE_URL}api/wedding/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setData(data);
+      });
+  }, [id]);
+
+  if (data === null) return <div>loading...</div>;
+
   const images = data.images.map((image: { url: string }) => image.url);
   const { color, opacity } = JSON.parse(data.heartInfo);
+
   return (
     <div className={styles.container} style={{ background: data.themeColor }}>
       <Header />
@@ -119,6 +136,11 @@ export default async function Slug({
         공유하기
       </button>
       <Footer />
+      {galleryInfo && (
+        <GalleryExtension
+          list={images.filter((image: string) => image.includes("gallery"))}
+        />
+      )}
     </div>
   );
 }

@@ -6,18 +6,37 @@ import styled from "@emotion/styled";
 import { useEffect, useRef } from "react";
 import React from "react";
 
+const kakaoClickHandler = () => {
+  // 모바일 환경인지 확인
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
+    navigator.userAgent
+  );
+
+  // 모바일 환경일 경우 카카오맵 실행
+  if (isMobile) {
+    const kakaoMapUrl = `kakaomap://route?ep=${encodeURIComponent("주소")}`;
+    window.location.href = kakaoMapUrl;
+  } else {
+    // PC 환경에서 처리
+    // ...
+  }
+};
+
 const buttons = [
   {
     img: "kakao.png",
     name: "카카오내비",
+    onClick: kakaoClickHandler,
   },
   {
     img: "tmap.png",
     name: "티맵",
+    onClick: () => console.log("tmap"),
   },
   {
     img: "naver_map.png",
     name: "네이버맵",
+    onClick: () => console.log("naver"),
   },
 ];
 
@@ -78,7 +97,7 @@ export default function Location({
       <MapContainer ref={ref} />
       <ButtonContainer color={buttonColor}>
         {buttons.map((info) => (
-          <Button key={info.name}>
+          <Button key={info.name} onClick={info.onClick}>
             <Icon img={info.img} />
             <span>{info.name}</span>
           </Button>

@@ -27,7 +27,7 @@ export default function Transportation({
                 className={styles.icon}
                 style={{ backgroundImage: `url(${info.icon})` }}
               />
-              {info.name}
+              {info.name === "버스" ? "버     스" : info.name}
             </div>
             {typeof info.routes === "object" &&
               info.routes.length > 0 &&
@@ -38,7 +38,7 @@ export default function Transportation({
                 </div>
               ))}
             {typeof info.route === "string" && info.route && (
-              <div className={styles.routes + " textarea"}>{info.route}</div>
+              <div className={styles.route + " textarea"}>{info.route}</div>
             )}
           </div>
         ))}
