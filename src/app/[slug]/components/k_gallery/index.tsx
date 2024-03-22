@@ -19,8 +19,8 @@ export default function Gallery({ images }: { images: string[] }) {
   const parentRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLDivElement>(null);
 
-  const clickImage = (idx: number, list: string[]) => {
-    setGalleryInfo({ cur: idx, list });
+  const clickImage = (idx: number) => {
+    setGalleryInfo(() => idx);
   };
 
   useEffect(() => {
@@ -114,7 +114,7 @@ export default function Gallery({ images }: { images: string[] }) {
       <div ref={parentRef} style={{ width: "100%", overflow: "hidden" }}>
         <div ref={childRef} className={styles.wrapper} style={{ width }}>
           {images.map((image, idx) => (
-            <div key={image} onClick={() => clickImage(idx, images)}>
+            <div key={image} onClick={() => clickImage(idx)}>
               <Image
                 src={serverUrl + image}
                 alt="gallery"

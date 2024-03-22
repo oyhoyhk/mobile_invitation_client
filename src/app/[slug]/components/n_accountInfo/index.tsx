@@ -5,6 +5,8 @@ import React, { useRef, useState } from "react";
 import Arrow from "../../../../assets/arrowDown.svg";
 import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 import { hexToRgba } from "@/app/lib/hexToRgba";
+import { useSetRecoilState } from "recoil";
+import { alarmState } from "@/app/lib/atom";
 
 export default function AccountInfo({
   account,
@@ -15,6 +17,7 @@ export default function AccountInfo({
 }) {
   const conRef = useRef<HTMLDivElement>(null);
   useScrollFadeIn(conRef);
+  const setAlarm = useSetRecoilState(alarmState);
 
   const accountInfo = JSON.parse(account);
   const [groomToggle, setGroomToggle] = useState(false);
@@ -22,6 +25,10 @@ export default function AccountInfo({
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
+    setAlarm(() => ({
+      type: "success",
+      message: "복사되었습니다.",
+    }));
   };
 
   return (

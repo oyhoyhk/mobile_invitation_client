@@ -133,12 +133,12 @@ export default function Slug({
         공유하기
       </button>
       <Footer />
-      {galleryInfo && (
+      {galleryInfo !== null && (
         <GalleryExtension
           list={images.filter((image: string) => image.includes("gallery"))}
         />
       )}
-      {alarm && <Alarm />}
+      {alarm && <Alarm color={data.buttonColor} />}
     </div>
   );
 }

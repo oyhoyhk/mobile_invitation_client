@@ -1,9 +1,6 @@
 import { atom } from "recoil";
 
-export const galleryState = atom<{
-  cur: number;
-  list: string[];
-} | null>({
+export const galleryState = atom<number | null>({
   key: "galleryState",
   default: null,
 });
