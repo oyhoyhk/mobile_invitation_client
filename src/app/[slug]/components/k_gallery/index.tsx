@@ -2,21 +2,20 @@
 
 import Image from "next/image";
 import styles from "./gallery.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 import { useSetRecoilState } from "recoil";
 import { galleryState } from "@/app/lib/atom";
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
-import styled from "@emotion/styled";
 import { DragDealer } from "./DragDealer";
 import "react-horizontal-scrolling-menu/dist/styles.css";
 
 type scrollVisibilityApiType = React.ContextType<typeof VisibilityContext>;
 
 function onWheel(apiObj: scrollVisibilityApiType, ev: React.WheelEvent): void {
+  ev.stopPropagation();
   const isThouchpad = Math.abs(ev.deltaX) !== 0 || Math.abs(ev.deltaY) < 15;
   if (isThouchpad) {
-    ev.stopPropagation();
     return;
   }
 
@@ -79,7 +78,6 @@ export default function Gallery({ images }: { images: string[] }) {
         ref={parentRef}
         className={styles.wrapper}
         onMouseLeave={dragState.current.dragStop}
-        onWheel={(e) => e.preventDefault()}
       >
         <ScrollMenu
           onWheel={onWheel}
