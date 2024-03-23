@@ -34,12 +34,11 @@ export default function Location({
     // 도착지 좌표 및 자동차 길찾기 URL 설정
     const kakaoMapUrl = `kakaomap://route?ep=${lat},${lng}&by=CAR`;
     const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
-    const openKakaoMapUrl = "kakaomap://open";
 
     // 카카오맵 앱 존재 여부 확인
     try {
-      window.location.href = openKakaoMapUrl;
       window.location.href = appStoreUrl;
+      window.location.href = kakaoMapUrl;
     } catch (e) {
       setAlarm({
         type: "error",
@@ -65,9 +64,9 @@ export default function Location({
     console.log(locationInfo);
     try {
       fetch(
-        `https://apis.openapi.sk.com/tmap/app/routes?appKey=avoyyH4NXZ2X8FreBo7Hk5cjYEQjFVurEzojOnwj&goalName=${encodeURIComponent(
+        `https://apis.openapi.sk.com/tmap/app/routes?appKey=avoyyH4NXZ2X8FreBo7Hk5cjYEQjFVurEzojOnwj&name=${encodeURIComponent(
           locationInfo.address
-        )}&goalX=${lng}&goalY=${lat}`
+        )}&lon=${lng}&lat=${lat}`
       );
       window.location.href = tmapUrl;
       window.location.href = appStoreUrl;
