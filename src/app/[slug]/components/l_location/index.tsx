@@ -84,7 +84,9 @@ export default function Location({
     }
 
     // 도착지 좌표 및 자동차 길찾기 URL 설정
-    const naverMapUrl = `nmap://route/car?dlat=${lat}&dlng=${lng}&appname=kr.co.kepco.ElectricCar`;
+    const naverMapUrl = `nmap://route/car?dlat=${lat}&dlng=${lng}&dname=${encodeURIComponent(
+      locationInfo.address
+    )}&appname=com.example.myapp`;
     const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
     try {
       window.location.href = naverMapUrl;
