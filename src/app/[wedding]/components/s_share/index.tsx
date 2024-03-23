@@ -36,16 +36,16 @@ export default function ShareButton({
           description: data.firstDescription,
           imageUrl: process.env.NEXT_PUBLIC_IMAGE_URL + photo,
           link: {
-            mobileWebUrl: `${process.env.NEXT_PUBLIC_SHARE_URL}[wedding]?id=${data.id}`,
-            webUrl: `${process.env.NEXT_PUBLIC_SHARE_URL}[wedding]?id=${data.id}`,
+            mobileWebUrl: `${process.env.NEXT_PUBLIC_SHARE_URL}${data.id}`,
+            webUrl: `${process.env.NEXT_PUBLIC_SHARE_URL}${data.id}`,
           },
         },
         buttons: [
           {
             title: "축하해주러 가기기",
             link: {
-              mobileWebUrl: `${process.env.NEXT_PUBLIC_SHARE_URL}[wedding]?id=${data.id}`,
-              webUrl: `${process.env.NEXT_PUBLIC_SHARE_URL}[wedding]?id=${data.id}`,
+              mobileWebUrl: `${process.env.NEXT_PUBLIC_SHARE_URL}${data.id}`,
+              webUrl: `${process.env.NEXT_PUBLIC_SHARE_URL}${data.id}`,
             },
           },
         ],
