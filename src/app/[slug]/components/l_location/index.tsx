@@ -57,15 +57,17 @@ export default function Location({
       return;
     }
     // 도착지 좌표 및 자동차 길찾기 URL 설정
-    const tmapUrl = `tmap://route?rGoName=${locationInfo.address}&rGoX=${lng}&rGoY=${lat}`;
+    const tmapUrl = `tmap://route?goalName=${locationInfo.address}&goalX=${lng}&goalY=${lat}`;
     const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
 
     // 티맵 앱 존재 여부 확인
+
+    console.log(locationInfo);
     try {
       fetch(
-        `https://apis.openapi.sk.com/tmap/app/routes?appKey=avoyyH4NXZ2X8FreBo7Hk5cjYEQjFVurEzojOnwj&name=${encodeURIComponent(
+        `https://apis.openapi.sk.com/tmap/app/routes?appKey=avoyyH4NXZ2X8FreBo7Hk5cjYEQjFVurEzojOnwj&goalName=${encodeURIComponent(
           locationInfo.address
-        )}&lon=${lng}&lat=${lat}`
+        )}&goalX=${lng}&goalY=${lat}`
       );
       window.location.href = tmapUrl;
       window.location.href = appStoreUrl;
