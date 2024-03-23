@@ -127,7 +127,7 @@ export default function Slug({
         finalPhotoColor={data.finalPhotoColor}
         finalPhotoText={data.finalPhotoText}
       />
-      <ShareButton color={data.buttonColor} />
+      <ShareButton data={data} color={data.buttonColor} />
       <Footer />
       {galleryInfo !== null && (
         <GalleryExtension
