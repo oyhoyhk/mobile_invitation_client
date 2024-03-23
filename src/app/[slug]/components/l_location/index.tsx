@@ -1,88 +1,12 @@
 "use client";
 
+import { alarmState } from "@/app/lib/atom";
 import useNaverMap from "@/app/lib/hooks/useNaverMap";
 import useScrollFadeIn from "@/app/lib/hooks/useScrollFadeIn";
 import styled from "@emotion/styled";
 import { useEffect, useRef } from "react";
 import React from "react";
-
-const kakaoClickHandler = (location: string) => {
-  // 모바일 환경인지 확인
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(
-    navigator.userAgent
-  );
-
-  // 모바일 환경일 경우 카카오맵 실행
-  if (isMobile) {
-    const kakaoMapUrl = `kakaomap://route?ep=${encodeURIComponent(location)}`;
-    window.location.href = kakaoMapUrl;
-  } else {
-    // PC 환경에서 처리
-    alert("모바일에서만 지원하는 기능입니다.");
-    // ...
-  }
-};
-
-function showKakaoMap(lng: number, lat: number) {
-  // 도착지 좌표 및 자동차 길찾기 URL 설정
-  const kakaoMapUrl = `kakaomap://route?ep=${lat},${lng}&by=CAR`;
-  const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
-  const openKakaoMapUrl = "kakaomap://open";
-
-  // 카카오맵 앱 존재 여부 확인
-  if ((window.location.href = openKakaoMapUrl)) {
-    // 앱이 존재할 경우 길찾기 실행
-    window.location.href = kakaoMapUrl;
-  } else {
-    // 앱이 없을 경우 앱스토어로 이동
-    window.location.href = appStoreUrl;
-  }
-}
-
-function showTmap(lng: number, lat: number) {
-  // 도착지 좌표 및 자동차 길찾기 URL 설정
-  const tmapUrl = `tmap://?app=tmap&eName=${encodeURIComponent(
-    "주소"
-  )}&eLat=${lat}&eLon=${lng}`;
-  const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
-  const openTmapUrl = "tmap://";
-
-  // 티맵 앱 존재 여부 확인
-  window.location.href = tmapUrl;
-}
-
-function showNaverMap(lng: number, lat: number) {
-  // 도착지 좌표 및 자동차 길찾기 URL 설정
-  const naverMapUrl = `nmap://route?dlat=${lat}&dlng=${lng}&slat=37.566535&slng=126.977945&appname=navermap`;
-  const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
-  const openNaverMapUrl = "nmap://open";
-
-  // 네이버 지도 앱 존재 여부 확인
-  if ((window.location.href = openNaverMapUrl)) {
-    // 앱이 존재할 경우 길찾기 실행
-    window.location.href = naverMapUrl;
-  } else {
-    // 앱이 없을 경우 앱스토어로 이동
-    window.location.href = appStoreUrl;
-  }
-}
-const buttons = [
-  {
-    img: "kakao.png",
-    name: "카카오내비",
-    onClick: showKakaoMap,
-  },
-  {
-    img: "tmap.png",
-    name: "티맵",
-    onClick: showTmap,
-  },
-  {
-    img: "naver_map.png",
-    name: "네이버맵",
-    onClick: showNaverMap,
-  },
-];
+import { useSetRecoilState } from "recoil";
 
 export default function Location({
   location,
@@ -95,6 +19,100 @@ export default function Location({
   const ref = useRef<HTMLDivElement>(null);
   const conRef = useRef<HTMLDivElement>(null);
   const locationInfo = JSON.parse(location);
+  const setAlarm = useSetRecoilState(alarmState);
+
+  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  function showKakaoMap(lng: number, lat: number) {
+    if (!isMobile) {
+      setAlarm({
+        type: "error",
+        message: "모바일에서만 이용 가능합니다.",
+      });
+      return;
+    }
+    // 도착지 좌표 및 자동차 길찾기 URL 설정
+    const kakaoMapUrl = `kakaomap://route?ep=${lat},${lng}&by=CAR`;
+    const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
+    const openKakaoMapUrl = "kakaomap://open";
+
+    // 카카오맵 앱 존재 여부 확인
+    try {
+      window.location.href = openKakaoMapUrl;
+      window.location.href = appStoreUrl;
+    } catch (e) {
+      setAlarm({
+        type: "error",
+        message: "카카오맵 앱이 설치되어 있지 않습니다.",
+      });
+    }
+  }
+
+  function showTmap(lng: number, lat: number) {
+    if (!isMobile) {
+      setAlarm({
+        type: "error",
+        message: "모바일에서만 이용 가능합니다.",
+      });
+      return;
+    }
+    // 도착지 좌표 및 자동차 길찾기 URL 설정
+    const tmapUrl = `tmap://?app=tmap&eName=${encodeURIComponent(
+      "주소"
+    )}&eLat=${lat}&eLon=${lng}`;
+    const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
+
+    // 티맵 앱 존재 여부 확인
+    try {
+      window.location.href = tmapUrl;
+      window.location.href = appStoreUrl;
+    } catch (e) {
+      setAlarm({
+        type: "error",
+        message: "티맵 앱이 설치되어 있지 않습니다.",
+      });
+    }
+  }
+
+  function showNaverMap(lng: number, lat: number) {
+    if (!isMobile) {
+      setAlarm({
+        type: "error",
+        message: "모바일에서만 이용 가능합니다.",
+      });
+      return;
+    }
+
+    // 도착지 좌표 및 자동차 길찾기 URL 설정
+    const naverMapUrl = `nmap://route?dlat=${lat}&dlng=${lng}&slat=37.566535&slng=126.977945&appname=navermap`;
+    const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
+    try {
+      window.location.href = naverMapUrl;
+      window.location.href = appStoreUrl;
+    } catch (e) {
+      setAlarm({
+        type: "error",
+        message: "네이버맵 앱이 설치되어 있지 않습니다.",
+      });
+    }
+  }
+  const buttons = [
+    {
+      img: "kakao.png",
+      name: "카카오내비",
+      onClick: showKakaoMap,
+    },
+    {
+      img: "tmap.png",
+      name: "티맵",
+      onClick: showTmap,
+    },
+    {
+      img: "naver_map.png",
+      name: "네이버맵",
+      onClick: showNaverMap,
+    },
+  ];
 
   useScrollFadeIn(conRef);
   console.log(locationInfo);
