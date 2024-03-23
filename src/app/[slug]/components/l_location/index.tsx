@@ -63,11 +63,6 @@ export default function Location({
 
     console.log(locationInfo);
     try {
-      fetch(
-        `https://apis.openapi.sk.com/tmap/app/routes?appKey=avoyyH4NXZ2X8FreBo7Hk5cjYEQjFVurEzojOnwj&name=${encodeURIComponent(
-          locationInfo.address
-        )}&lon=${lng}&lat=${lat}`
-      );
       window.location.href = tmapUrl;
       window.location.href = appStoreUrl;
     } catch (e) {
@@ -88,7 +83,7 @@ export default function Location({
     }
 
     // 도착지 좌표 및 자동차 길찾기 URL 설정
-    const naverMapUrl = `nmap://route?dlat=${lat}&dlng=${lng}&slat=37.566535&slng=126.977945&appname=navermap`;
+    const naverMapUrl = `nmap://route/car?dlat=${lat}&dlng=${lng}&appname=kr.co.kepco.ElectricCar`;
     const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
     try {
       window.location.href = naverMapUrl;
