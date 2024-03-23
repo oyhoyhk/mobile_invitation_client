@@ -62,6 +62,11 @@ export default function Location({
 
     // 티맵 앱 존재 여부 확인
     try {
+      fetch(
+        `https://apis.openapi.sk.com/tmap/app/routes?appKey=avoyyH4NXZ2X8FreBo7Hk5cjYEQjFVurEzojOnwj&name=${encodeURIComponent(
+          locationInfo.address
+        )}&lon=${lng}&lat=${lat}`
+      );
       window.location.href = tmapUrl;
       window.location.href = appStoreUrl;
     } catch (e) {
