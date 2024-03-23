@@ -1,12 +1,16 @@
 import { alarmState } from "@/app/lib/atom";
+import { hexToRgba } from "@/app/lib/hexToRgba";
 import styled from "@emotion/styled";
+import { MenuItem, Select } from "@mui/material";
 import React, { useState } from "react";
 import { useSetRecoilState } from "recoil";
 
 export default function Modal({
+  id,
   color,
   setToggle,
 }: {
+  id: string;
   color: string;
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
@@ -19,7 +23,7 @@ export default function Modal({
       tel: { value: string };
       memo: { value: string };
       meal: { value: string };
-      count: { value: string };
+      count: { value: number };
     };
 
     if (
@@ -29,7 +33,7 @@ export default function Modal({
       !target.meal.value ||
       !target.count.value
     ) {
-      alert("모든 항목을 입력해주세요");
+      setAlarm({ type: "error", message: "모든 항목을 입력해주세요" });
       return;
     }
 
@@ -38,23 +42,28 @@ export default function Modal({
     const memo = target.memo.value;
     const meal = target.meal.value;
     const count = target.count.value;
-
-    await fetch(`${process.env.NEXT_PUBLIC_IMAGE_URL}api/attendance`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        receiver,
-        name,
-        tel,
-        memo,
-        meal,
-        count,
-      }),
-    });
-    setToggle(false);
-    setAlarm({ type: "success", message: "전달되었습니다" });
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_IMAGE_URL}api/attendance`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          receiver,
+          name,
+          tel,
+          memo,
+          meal,
+          count,
+        }),
+      });
+      setAlarm({ type: "success", message: "전달되었습니다" });
+    } catch (e) {
+      setAlarm({ type: "error", message: "전달에 실패했습니다" });
+    } finally {
+      setToggle(false);
+    }
   };
   return (
     <Container onSubmit={onSubmit}>
@@ -67,13 +76,19 @@ export default function Modal({
         <label>구분</label>
         <div>
           <div
-            className={receiver === "groom" ? "selected" : ""}
+            style={{
+              background:
+                receiver === "groom" ? hexToRgba(color, 0.5) : "white",
+            }}
             onClick={() => setReceiver("groom")}
           >
             신랑
           </div>
           <div
-            className={receiver === "bride" ? "selected" : ""}
+            style={{
+              background:
+                receiver === "bride" ? hexToRgba(color, 0.5) : "white",
+            }}
             onClick={() => setReceiver("bride")}
           >
             신부
@@ -94,7 +109,7 @@ export default function Modal({
       </InputContainer>
       <InputContainer>
         <label htmlFor="attendance_meal">식사</label>
-        <div>
+        <div className="radios">
           <input
             type="radio"
             name="meal"
@@ -118,20 +133,67 @@ export default function Modal({
           <label htmlFor="attendance_noappearance">불참</label>
         </div>
       </InputContainer>
-      <InputContainer>
+      <SelectContainer>
         <label htmlFor="attendance_count">참석인원</label>
-        <input
-          type="text"
+        <Select
+          defaultValue={1}
+          sx={{
+            width: "75%",
+            height: "33px",
+            border: "1px solid #817a5e4d",
+            textAlign: "center",
+            borderRadius: "8px",
+            padding: "8px 16px",
+            outline: "none",
+          }}
           name="count"
-          maxLength={11}
           id="attendance_count"
-          placeholder="총 1명 (본인포함)"
-        />
-      </InputContainer>
+        >
+          <MenuItem value={1}>1명 (본인 포함)</MenuItem>
+          <MenuItem value={2}>2명 (본인 포함)</MenuItem>
+          <MenuItem value={3}>3명 (본인 포함)</MenuItem>
+          <MenuItem value={4}>4명 (본인 포함)</MenuItem>
+          <MenuItem value={5}>5명 (본인 포함)</MenuItem>
+        </Select>
+      </SelectContainer>
       <Button style={{ background: color }}>전달하기</Button>
     </Container>
   );
 }
+
+const SelectContainer = styled.div`
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+
+  font-family: "MaruBuri-Regular", "Inter", serif;
+  font-size: 0.9rem;
+
+  & div {
+    font-size: 0.9rem;
+  }
+
+  & > div {
+    border: 1px solid #817a5e4d !important;
+
+    outline: none !important;
+    &:focus,
+    &:hover {
+      border: 1px solid #817a5e4d !important;
+      outline: none !important;
+    }
+  }
+  & fieldset {
+    border: none;
+    outline: None;
+  }
+
+  & svg path {
+    fill: #817a5e4d;
+  }
+`;
 
 const InputContainer = styled.div`
   width: 80%;

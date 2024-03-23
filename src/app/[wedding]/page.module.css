@@ -1,7 +1,18 @@
-.container {
-  width: 375px;
-  margin: 0 auto;
-  text-align: center;
+@media (min-width: 768px) {
+  .container {
+    width: 375px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  /* 모바일 스타일 */
+  .container {
+    width: 100vw;
+    margin: 0 auto;
+    text-align: center;
+  }
 }
 
 .divider {

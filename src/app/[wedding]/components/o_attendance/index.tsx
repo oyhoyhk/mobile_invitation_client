@@ -6,9 +6,11 @@ import React, { useRef, useState } from "react";
 import Modal from "./Modal";
 
 export default function Attendance({
+  id,
   attendanceMessage,
   buttonColor,
 }: {
+  id: string;
   attendanceMessage: string;
   buttonColor: string;
 }) {
@@ -26,7 +28,7 @@ export default function Attendance({
       >
         참석의사 전달하기
       </Button>
-      {toggle && <Modal setToggle={setToggle} color={buttonColor} />}
+      {toggle && <Modal id={id} setToggle={setToggle} color={buttonColor} />}
     </Container>
   );
 }

@@ -117,6 +117,7 @@ export default function Slug({
       />
       <AccountInfo account={data.accountInfo} buttonColor={data.buttonColor} />
       <Attendance
+        id={id}
         buttonColor={data.buttonColor}
         attendanceMessage={data.attendanceMessage}
       />

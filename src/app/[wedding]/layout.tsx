@@ -21,11 +21,10 @@ export default function RootLayout({
         setData(data);
       });
   }, []);
-  if (data === null) return <div>loading...</div>;
-  const name = JSON.parse(data.name);
-  const photo = data.images.filter((el: any) =>
-    el.url.includes("finalPhoto")
-  )[0].url;
+  const name = data ? JSON.parse(data.name) : { groom: "", bride: "" };
+  const photo = data
+    ? data.images.filter((el: any) => el.url.includes("finalPhoto"))[0].url
+    : "";
   return (
     <html lang="en">
       <Head>
@@ -34,12 +33,15 @@ export default function RootLayout({
         <title>
           {name.groom}❤️{name.bride} 결혼합니다!
         </title>
-        <meta name="description" content={data.firstDescription} />
+        <meta name="description" content={data?.firstDescription || ""} />
         <meta
           property="og:title"
           content={`${name.groom}❤️${name.bride} 결혼합니다!`}
         />
-        <meta property="og:description" content={data.firstDescription} />
+        <meta
+          property="og:description"
+          content={data?.firstDescription || ""}
+        />
         <meta
           property="og:image"
           content={process.env.NEXT_PUBLIC_IMAGE_URL + photo}
