@@ -56,7 +56,8 @@ export default function Location({
       return;
     }
     // 도착지 좌표 및 자동차 길찾기 URL 설정
-    const tmapUrl = `tmap://route?rGoName=${locationInfo.address}&rGoX=${lng}&rGoY=${lat}`;
+    const tmapUrl = `tmap://route?goalname=${locationInfo.address}&goalx=${lng}&goaly=${lat}`;
+
     const appStoreUrl = "itms-apps://itunes.apple.com/app/id304608425";
 
     // 티맵 앱 존재 여부 확인
