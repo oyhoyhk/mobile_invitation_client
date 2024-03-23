@@ -28,13 +28,12 @@ import GalleryExtension from "./components/z_etc/GalleryExtension";
 import { useEffect, useState } from "react";
 import Alarm from "./components/z_etc/Alarm";
 import ShareButton from "./components/s_share";
+import { usePathname } from "next/navigation";
 
-export default function Slug({
-  searchParams,
-}: {
-  searchParams: { id: string };
-}) {
-  const id = searchParams.id;
+export default function Slug({}: {}) {
+  const pathname = usePathname();
+
+  const id = pathname.split("/")[1];
 
   const [data, setData] = useState<any>(null);
   const galleryInfo = useRecoilValue(galleryState);

@@ -4,16 +4,17 @@ import type { Metadata } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { RecoilRoot } from "recoil";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [searchParams] = useSearchParams();
   const [data, setData] = useState<any>(null);
-  const id = searchParams[1];
+  const pathname = usePathname();
+  const id = pathname.split("/")[1];
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_IMAGE_URL}api/wedding/${id}`)
       .then((res) => res.json())
