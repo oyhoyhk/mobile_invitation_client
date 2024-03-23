@@ -27,6 +27,7 @@ import { alarmState, galleryState } from "../lib/atom";
 import GalleryExtension from "./components/z_etc/GalleryExtension";
 import { useEffect, useState } from "react";
 import Alarm from "./components/z_etc/Alarm";
+import ShareButton from "./components/s_share";
 
 export default function Slug({
   searchParams,
@@ -126,12 +127,7 @@ export default function Slug({
         finalPhotoColor={data.finalPhotoColor}
         finalPhotoText={data.finalPhotoText}
       />
-      <button
-        style={{ background: data.buttonColor }}
-        className={styles.button}
-      >
-        공유하기
-      </button>
+      <ShareButton color={data.buttonColor} />
       <Footer />
       {galleryInfo !== null && (
         <GalleryExtension
