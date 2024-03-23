@@ -72,7 +72,7 @@ export default function GalleryExtension({ list }: { list: any[] }) {
         onClick={previous}
         style={{
           position: "fixed",
-          left: "10px",
+          left: "3%",
           top: "50%",
           transform: "translateY(-50%)",
           cursor: "pointer",
@@ -82,7 +82,7 @@ export default function GalleryExtension({ list }: { list: any[] }) {
         onClick={next}
         style={{
           position: "fixed",
-          right: "10px",
+          right: "3%",
           top: "50%",
           transform: "translateY(-50%)  rotate(180deg)",
           cursor: "pointer",
@@ -91,8 +91,8 @@ export default function GalleryExtension({ list }: { list: any[] }) {
       <Close
         style={{
           position: "fixed",
-          top: "10px",
-          right: "10px",
+          top: "3%",
+          right: "3%",
           cursor: "pointer",
         }}
         onClick={() => setGalleryInfo(null)}

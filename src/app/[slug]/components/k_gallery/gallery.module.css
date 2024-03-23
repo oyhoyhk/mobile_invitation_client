@@ -1,28 +1,38 @@
 .wrapper {
-  text-align: right;
-  user-select: none;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  width: 100%;
 }
-.wrapper > div {
-  width: 200px;
-  margin: 10px 10px;
+
+.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  width: 210px;
 }
 
 .wrapper img {
-  border-radius: 0.6rem;
-  border-radius: 0.5rem;
-  width: 100%;
+  width: 200px;
   height: auto;
+  margin: 5px;
+  border-radius: 10px;
 }
 
 .container {
-  width: 90%;
+  width: 97%;
   overflow-x: hidden;
   margin: 0 auto;
   margin-top: 25px;
