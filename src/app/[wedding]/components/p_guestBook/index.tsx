@@ -37,7 +37,6 @@ export default function GuestBook({
       .then((res) => {
         setList((prev) => [...res.guestBooks]);
         setTotalLength(res.totalLength);
-        console.log("why count two");
       })
       .catch(() => {
         setAlarm({

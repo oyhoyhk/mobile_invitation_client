@@ -21,9 +21,6 @@ export default function GalleryExtension({ list }: { list: any[] }) {
     slidesToScroll: 1,
     initialSlide: galleryInfo as number,
     afterChange: function (index: number) {
-      console.log(
-        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-      );
       setGalleryInfo(index);
     },
   };

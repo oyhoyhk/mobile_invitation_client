@@ -43,7 +43,6 @@ export default function Slug({
     fetch(`${process.env.NEXT_PUBLIC_IMAGE_URL}api/wedding/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setData(data);
       });
   }, [id]);

@@ -14,7 +14,6 @@ export default function ShareButton({
 
   useEffect(() => {
     if (!kakao || !data) return;
-    console.log(kakao);
     const name = JSON.parse(data.name);
     const photo = data.images.filter((el: any) =>
       el.url.includes("finalPhoto")
@@ -22,7 +21,6 @@ export default function ShareButton({
     kakao.init("14dbd850d88a95cc04984112df3658ad");
 
     // SDK 초기화 여부를 판단합니다.
-    console.log(kakao.isInitialized());
     if (ref.current) {
       ref.current.addEventListener("click", kakaoShare);
       return () => {
@@ -38,16 +36,16 @@ export default function ShareButton({
           description: data.firstDescription,
           imageUrl: process.env.NEXT_PUBLIC_IMAGE_URL + photo,
           link: {
-            mobileWebUrl: "카카오공유하기 시 클릭 후 이동 경로",
-            webUrl: "카카오공유하기 시 클릭 후 이동 경로",
+            mobileWebUrl: `${process.env.NEXT_PUBLIC_SHARE_URL}[wedding]?id=${data.id}`,
+            webUrl: `${process.env.NEXT_PUBLIC_SHARE_URL}[wedding]?id=${data.id}`,
           },
         },
         buttons: [
           {
             title: "축하해주러 가기기",
             link: {
-              mobileWebUrl: "카카오공유하기 시 클릭 후 이동 경로",
-              webUrl: "카카오공유하기 시 클릭 후 이동 경로",
+              mobileWebUrl: `${process.env.NEXT_PUBLIC_SHARE_URL}[wedding]?id=${data.id}`,
+              webUrl: `${process.env.NEXT_PUBLIC_SHARE_URL}[wedding]?id=${data.id}`,
             },
           },
         ],

@@ -107,7 +107,6 @@ export default function Location({
   ];
 
   useScrollFadeIn(conRef);
-  console.log(locationInfo);
   useEffect(() => {
     if (!naver || !ref.current || !locationInfo.address) return;
     const { x, y } = locationInfo;
