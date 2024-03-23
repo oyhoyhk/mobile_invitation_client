@@ -26,7 +26,7 @@ export default async function Home() {
               날짜 : {new Date(info.createdAt).toLocaleDateString("kor")}
             </span>
             <Link
-              href={`/[slug]?id=${info.id}`}
+              href={`/[wedding]?id=${info.id}`}
               style={{
                 borderRadius: "0.5rem",
                 background: "#18acff",

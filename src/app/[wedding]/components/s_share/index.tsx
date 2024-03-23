@@ -2,14 +2,23 @@ import useKakao from "@/app/lib/hooks/useKakao";
 import styled from "@emotion/styled";
 import { useEffect, useRef } from "react";
 
-export default function ShareButton({ color }: { color: string }) {
+export default function ShareButton({
+  data,
+  color,
+}: {
+  data: any;
+  color: string;
+}) {
   const kakao: any = useKakao();
   const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (!kakao) return;
+    if (!kakao || !data) return;
     console.log(kakao);
-
+    const name = JSON.parse(data.name);
+    const photo = data.images.filter((el: any) =>
+      el.url.includes("finalPhoto")
+    )[0].url;
     kakao.init("14dbd850d88a95cc04984112df3658ad");
 
     // SDK 초기화 여부를 판단합니다.
@@ -20,13 +29,14 @@ export default function ShareButton({ color }: { color: string }) {
         ref.current?.removeEventListener("click", kakaoShare);
       };
     }
+
     function kakaoShare() {
       kakao.Link.sendDefault({
         objectType: "feed",
         content: {
-          title: "카카오공유하기 시 타이틀",
-          description: "카카오공유하기 시 설명",
-          imageUrl: "카카오공유하기 시 썸네일 이미지 경로",
+          title: `${name.groom}❤️${name.bride} 결혼합니다!`,
+          description: data.firstDescription,
+          imageUrl: process.env.NEXT_PUBLIC_IMAGE_URL + photo,
           link: {
             mobileWebUrl: "카카오공유하기 시 클릭 후 이동 경로",
             webUrl: "카카오공유하기 시 클릭 후 이동 경로",
@@ -34,7 +44,7 @@ export default function ShareButton({ color }: { color: string }) {
         },
         buttons: [
           {
-            title: "웹으로 보기",
+            title: "축하해주러 가기기",
             link: {
               mobileWebUrl: "카카오공유하기 시 클릭 후 이동 경로",
               webUrl: "카카오공유하기 시 클릭 후 이동 경로",
@@ -45,7 +55,7 @@ export default function ShareButton({ color }: { color: string }) {
         installTalk: true,
       });
     }
-  }, [kakao]);
+  }, [kakao, data]);
 
   return (
     <Button ref={ref} style={{ background: color }}>
