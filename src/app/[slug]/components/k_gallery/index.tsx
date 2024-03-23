@@ -93,7 +93,7 @@ export default function Gallery({ images }: { images: string[] }) {
                 <Image
                   src={serverUrl + image.src}
                   key={`image-${idx}-${imageIdx}`}
-                  onClickCapture={(e) => clickImage(image.index, e)}
+                  onClick={() => clickImage(image.index)}
                   alt="gallery"
                   sizes="100vw"
                   width={0}
