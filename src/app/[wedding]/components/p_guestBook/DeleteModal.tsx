@@ -6,11 +6,15 @@ export default function DeleteModal({
   id,
   idx,
   buttonColor,
+  setTotalLength,
+  setPage,
   setList,
   setDeleteModal,
 }: {
   id: string;
   idx: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setTotalLength: React.Dispatch<React.SetStateAction<number>>;
   buttonColor: string;
   setList: React.Dispatch<
     React.SetStateAction<
@@ -45,12 +49,16 @@ export default function DeleteModal({
           }),
         }
       );
+
       if (res.status === 400) {
         alert("비밀번호가 틀렸습니다.");
         return;
       }
+      const result = await res.json();
+      setList(() => [...result.guestBooks]);
+      setTotalLength(result.totalLength);
+      setPage(1);
       setDeleteModal(null);
-      setList((prev) => prev.filter((info) => info.idx !== idx));
       setAlarm({ type: "success", message: "삭제되었습니다" });
     } catch (e) {
       console.error(e);

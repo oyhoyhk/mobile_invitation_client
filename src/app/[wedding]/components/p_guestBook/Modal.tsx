@@ -3,12 +3,17 @@ import styled from "styled-components";
 export default function Modal({
   id,
   setToggle,
+  setPage,
+  setTotalLength,
   setList,
   buttonColor,
 }: {
   id: string;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setTotalLength: React.Dispatch<React.SetStateAction<number>>;
   buttonColor: string;
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+
   setList: React.Dispatch<
     React.SetStateAction<
       {
@@ -38,17 +43,22 @@ export default function Modal({
         password: target.password.value,
         message: target.message.value,
       }),
-    });
-    setToggle(false);
-    setList((prev) => [
-      {
-        idx: prev.length + 1,
-        name: target.name.value,
-        createdAt: new Date().toISOString(),
-        title: target.message.value,
-      },
-      ...prev,
-    ]);
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setList((prev) => [...res.guestBooks]);
+        setTotalLength(res.totalLength);
+        setPage(1);
+        setToggle(false);
+      });
+    // setList(() => [
+    //   {
+    //     idx: prev.length + 1,
+    //     name: target.name.value,
+    //     createdAt: new Date().toISOString(),
+    //     title: target.message.value,
+    //   },
+    // ]);
   };
   return (
     <Container onSubmit={onSubmit}>

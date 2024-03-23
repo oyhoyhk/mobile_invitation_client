@@ -78,6 +78,8 @@ export default function GuestBook({
           id={id}
           setToggle={setToggle}
           setList={setList}
+          setPage={setPageCount}
+          setTotalLength={setTotalLength}
           buttonColor={buttonColor}
         />
       )}
@@ -86,6 +88,8 @@ export default function GuestBook({
           id={id}
           idx={deleteModal}
           setList={setList}
+          setPage={setPageCount}
+          setTotalLength={setTotalLength}
           buttonColor={buttonColor}
           setDeleteModal={setDeleteModal}
         />
