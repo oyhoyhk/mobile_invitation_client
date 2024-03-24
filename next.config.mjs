@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: ["push-swap.site", "localhost"],
+    domains: ["push-swap.site", "localhost"],
     remotePatterns: [
       {
         protocol: process.env.NODE_ENV === "production" ? "https" : "http",
