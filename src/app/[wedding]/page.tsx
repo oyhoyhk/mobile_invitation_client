@@ -115,7 +115,10 @@ export default function Slug({}: {}) {
       />
 
       <Location location={data.locationInfo} buttonColor={data.buttonColor} />
-      <Transportation transportation={data.transportInfo} />
+      <Transportation
+        transportation={data.transportInfo}
+        color={data.buttonColor}
+      />
       <Pigeon
         style={{
           margin: "var(--margin-top) auto 0 auto",

@@ -183,7 +183,7 @@ const Button = styled.div`
   align-items: center;
   justify-content: center;
   color: #817a5e;
-  font-size: 16px;
+  font-size: 15px;
   position: relative;
   width: 30%;
 
