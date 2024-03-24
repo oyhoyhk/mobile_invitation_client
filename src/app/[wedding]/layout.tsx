@@ -37,20 +37,9 @@ export async function generateMetadata({
 
 export default async function Layout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: {
-    wedding: string;
-  };
 }>) {
-  const id = params.wedding;
-  const data = await getData(id);
-  const name = data ? JSON.parse(data.name) : { groom: "", bride: "" };
-  const photo = data
-    ? data.images.filter((el: any) => el.url.includes("finalPhoto"))[0].url
-    : "";
-
   return (
     <html lang="en">
       <body>

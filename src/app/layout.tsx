@@ -14,20 +14,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="icon"
-          href="/icon?rose_letter.png"
-          type="image/<generated>"
-          sizes="<generated>"
-        />
-        <link
-          rel="apple-touch-icon"
-          href="/apple-icon?<generated>"
-          type="image/<generated>"
-          sizes="<generated>"
-        />
-      </head>
       <body>{children}</body>
     </html>
   );
