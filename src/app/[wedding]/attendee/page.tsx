@@ -29,7 +29,7 @@ const createData = () => {
   return data;
 };
 
-export default function attendee() {
+export default function Attendee() {
   const [filter, setFilter] = useState<"all" | "groom" | "bride">("all");
   const [limit, setLimit] = useState(10);
   const [itemOffset, setItemOffset] = useState(0);
