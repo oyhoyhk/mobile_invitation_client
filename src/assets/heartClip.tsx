@@ -1,21 +1,29 @@
 export default function HeartClip({ color }: { color: string }) {
   return (
     <svg
+      version="1.0"
+      xmlns="http://www.w3.org/2000/svg"
       width="320"
       height="320"
-      viewBox="0 0 320 320"
-      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 320.000000 320.000000"
+      preserveAspectRatio="xMidYMid meet"
     >
-      <rect width="320" height="320" fill={color} />
-      <defs>
-        <pattern
-          id="pattern0"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        ></pattern>
-        <image id="image0_622_2" width="500" height="500" />
-      </defs>
+      <g
+        transform="translate(0.000000,320.000000) scale(0.100000,-0.100000)"
+        fill={color}
+        stroke="none"
+      >
+        <path
+          d="M0 1600 l0 -1600 1600 0 1600 0 0 1600 0 1600 -1600 0 -1600 0 0
+   -1600z m1110 1059 c86 -19 184 -76 264 -150 78 -73 161 -187 193 -265 10 -24
+   21 -44 24 -44 3 0 15 22 28 49 79 177 231 322 397 383 82 30 240 36 320 13
+   103 -30 174 -73 254 -154 123 -124 189 -283 209 -501 27 -300 -67 -506 -323
+   -704 -45 -35 -156 -113 -247 -174 -91 -61 -203 -144 -250 -185 -160 -140 -301
+   -302 -358 -409 l-28 -53 -35 65 c-74 134 -248 322 -409 441 -41 30 -139 97
+   -219 148 -296 191 -405 295 -485 462 -54 112 -69 198 -62 353 7 162 32 270 94
+   396 78 161 231 294 379 329 54 12 200 13 254 0z"
+        />
+      </g>
     </svg>
   );
 }

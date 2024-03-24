@@ -1,8 +1,5 @@
-import Image from "next/image";
-import Heart from "../../../../assets/heartClip.svg";
-import styles from "./clippedImage.module.css";
 import HeartClip from "@/assets/heartClip";
-import getImageUrl from "@/app/lib/getImageUrl";
+import styles from "./clippedImage.module.css";
 
 export default function ClippedImage({
   color,
@@ -23,6 +20,7 @@ export default function ClippedImage({
           backgroundSize: "cover",
         }}
       />
+      {/* <HeartClip color={color} /> */}
     </div>
   );
 }

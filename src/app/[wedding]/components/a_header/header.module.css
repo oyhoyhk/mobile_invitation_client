@@ -1,7 +1,6 @@
-.bird {
+.topLabel {
   width: 339px;
   height: 52px;
-  background: url("/bird.png");
   background-size: cover;
   position: absolute;
   left: 50%;
@@ -9,10 +8,9 @@
   transform: translateX(-50%);
 }
 
-.ribbon {
+.topImage {
   width: 342px;
   height: 193px;
-  background: url("/ribbon.png");
   background-size: cover;
   position: absolute;
   left: 50%;

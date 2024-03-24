@@ -1,66 +1,60 @@
-"use client";
-
 import type { Metadata } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import { RecoilRoot } from "recoil";
-import { useRouter } from "next/router";
-import { usePathname } from "next/navigation";
+import RecoilContextProvider from "../lib/RecoilProvider";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const [data, setData] = useState<any>(null);
-  const pathname = usePathname();
-  const id = pathname.split("/")[1];
-  useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_IMAGE_URL}api/wedding/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-      });
-  }, []);
+async function getData(id: string) {
+  const res = await fetch(`${process.env.IMAGE_URL}api/wedding/${id}`);
+  return res.json();
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { wedding: string };
+}): Promise<Metadata> {
+  const id = params.wedding;
+
+  const data = await fetch(`${process.env.IMAGE_URL}api/wedding/${id}`).then(
+    (res) => res.json()
+  );
+
   const name = data ? JSON.parse(data.name) : { groom: "", bride: "" };
   const photo = data
     ? data.images.filter((el: any) => el.url.includes("finalPhoto"))[0].url
     : "";
+
+  return {
+    title: `${name.groom}❤️${name.bride} 결혼합니다!`,
+    description: `${data?.firstDescription || ""}`,
+    openGraph: {
+      title: `${name.groom}❤️${name.bride} 결혼합니다!`,
+      description: `${data?.firstDescription || ""}`,
+      url: process.env.IMAGE_URL,
+      images: [process.env.IMAGE_URL + photo],
+    },
+  };
+}
+
+export default async function Layout({
+  children,
+  params,
+}: Readonly<{
+  children: React.ReactNode;
+  params: {
+    wedding: string;
+  };
+}>) {
+  const id = params.wedding;
+  const data = await getData(id);
+  const name = data ? JSON.parse(data.name) : { groom: "", bride: "" };
+  const photo = data
+    ? data.images.filter((el: any) => el.url.includes("finalPhoto"))[0].url
+    : "";
+
   return (
     <html lang="en">
-      <Head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-          {name.groom}❤️{name.bride} 결혼합니다!
-        </title>
-        <meta name="description" content={data?.firstDescription || ""} />
-        <meta
-          property="og:title"
-          content={`${name.groom}❤️${name.bride} 결혼합니다!`}
-        />
-        <meta
-          property="og:description"
-          content={data?.firstDescription || ""}
-        />
-        <meta
-          property="og:image"
-          content={process.env.NEXT_PUBLIC_IMAGE_URL + photo}
-        />
-        <meta
-          property="og:url"
-          content={process.env.NEXT_PUBLIC_IMAGE_URL + photo}
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="결혼식" />
-        <meta property="og:locale" content="ko_KR" />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:alt" content="결혼식" />
-        <meta property="og:site_name" content="결혼식" />
-        <meta property="og:locale" content="ko_KR" />
-      </Head>
       <body>
-        <RecoilRoot>{children}</RecoilRoot>
+        <RecoilContextProvider>{children}</RecoilContextProvider>
       </body>
     </html>
   );

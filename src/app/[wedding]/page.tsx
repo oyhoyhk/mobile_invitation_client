@@ -22,7 +22,7 @@ import GuestBook from "./components/p_guestBook";
 import FinalPhoto from "./components/q_finalPhoto";
 import Footer from "./components/r_footer";
 import { hexToRgba } from "../lib/hexToRgba";
-import { RecoilRoot, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { alarmState, galleryState } from "../lib/atom";
 import GalleryExtension from "./components/z_etc/GalleryExtension";
 import { useEffect, useState } from "react";
@@ -53,7 +53,14 @@ export default function Slug({}: {}) {
 
   return (
     <div className={styles.container} style={{ background: data.themeColor }}>
-      <Header />
+      <Header
+        topLabel={
+          images.filter((image: string) => image.includes("topLabel"))[0]
+        }
+        topImage={
+          images.filter((image: string) => image.includes("topImage"))[0]
+        }
+      />
       <Name name={data.name} />
       <ClippedImage
         color={data.themeColor}
