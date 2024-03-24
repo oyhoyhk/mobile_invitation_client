@@ -46,9 +46,9 @@ const Button = styled.button`
 const Container = styled.fieldset`
   width: 85%;
   margin: 0 auto;
-  margin-top: var(--margin-top);
+  margin-top: 115px;
   box-sizing: border-box;
-  font-size: 0.9rem;
+  font-size: 16px;
 
   border-radius: 0.5rem;
   border: 1px solid rgba(129, 122, 94, 0.3);
@@ -63,7 +63,7 @@ const Container = styled.fieldset`
   & > p {
     white-space: pre-line;
     line-height: 26px;
-    font-size: 14px;
+    font-size: 15px;
 
     &.empty {
       color: var(--gray-color);

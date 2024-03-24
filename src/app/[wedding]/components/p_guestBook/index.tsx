@@ -129,7 +129,7 @@ const Name = styled.div`
 `;
 
 const DateInfo = styled.div`
-  font-size: 0.9rem;
+  font-size: 16px;
   color: #817a5e;
 `;
 
@@ -138,7 +138,7 @@ const Close = styled.button`
   border: none;
   color: #817a5e;
   background: none;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   cursor: pointer;
   margin-left: 15px;
   line-height: 1rem;
@@ -175,9 +175,9 @@ const Container = styled.fieldset`
   width: 90%;
   margin: 0 auto;
   min-height: 250px;
-  margin-top: var(--margin-top);
+  margin-top: 115px;
   box-sizing: border-box;
-  font-size: 0.9rem;
+  font-size: 16px;
 
   border: none;
   border-top: 1px solid rgba(129, 122, 94, 0.3);

@@ -20,12 +20,15 @@ export default function FinalPhoto({
 
   return (
     <div className={styles.container + " con"} ref={conRef}>
-      <div
-        className={styles.photo}
+      <Image
+        sizes={"100vw"}
+        src={process.env.NEXT_PUBLIC_IMAGE_URL + src.replaceAll("\\", "/")}
+        alt="finalPhoto"
+        width={0}
+        height={0}
         style={{
-          backgroundImage: `url(${
-            process.env.NEXT_PUBLIC_IMAGE_URL + src.replaceAll("\\", "/")
-          })`,
+          width: "100%",
+          height: "auto",
         }}
       />
       <div className={styles.cover} />

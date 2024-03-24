@@ -1,3 +1,5 @@
+import { alarmState } from "@/app/lib/atom";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 
 export default function Modal({
@@ -25,6 +27,7 @@ export default function Modal({
     >
   >;
 }) {
+  const setAlarm = useSetRecoilState(alarmState);
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.target as typeof e.target & {
@@ -50,6 +53,16 @@ export default function Modal({
         setTotalLength(res.totalLength);
         setPage(1);
         setToggle(false);
+        setAlarm({
+          type: "success",
+          message: "방명록이 작성되었습니다",
+        });
+      })
+      .catch(() => {
+        setAlarm({
+          type: "error",
+          message: "방명록을 작성하는데 실패했습니다",
+        });
       });
     // setList(() => [
     //   {
@@ -158,13 +171,13 @@ const Header = styled.div`
 
   & > div:nth-of-type(2) {
     font-weight: 700;
-    font-size: 16px;
+    font-size: 17px;
   }
   & > div:first-of-type {
     width: 12px;
   }
   & > div:last-of-type {
-    font-size: 30px;
+    font-size: 31px;
     cursor: pointer;
   }
 `;

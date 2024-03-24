@@ -103,7 +103,7 @@ const Status = styled.div`
   left: 3%;
   top: 3%;
   color: white;
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 700;
 `;
 

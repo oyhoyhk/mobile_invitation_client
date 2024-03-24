@@ -1,4 +1,5 @@
 import styles from "./header.module.css";
+import Title from "@/assets/title.svg";
 
 export default function Header({
   topLabel,
@@ -25,12 +26,7 @@ export default function Header({
           })`,
         }}
       />
-      <div className={styles.text + " cursive"} style={{ top: "108px" }}>
-        We are getting
-      </div>
-      <div className={styles.text + " cursive"} style={{ top: "140px" }}>
-        Married
-      </div>
+      <Title className={styles.title} />
     </div>
   );
 }

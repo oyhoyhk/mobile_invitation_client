@@ -40,3 +40,10 @@
   height: 210px;
   position: relative;
 }
+
+.title {
+  position: absolute;
+  left: 50%;
+  top: 108px;
+  transform: translateX(-50%);
+}

@@ -169,10 +169,10 @@ const SelectContainer = styled.div`
   padding: 10px 0;
 
   font-family: "MaruBuri-Regular", "Inter", serif;
-  font-size: 0.9rem;
+  font-size: 16px;
 
   & div {
-    font-size: 0.9rem;
+    font-size: 16px;
   }
 
   & > div {
@@ -268,13 +268,13 @@ const Header = styled.div`
 
   & > div:nth-of-type(2) {
     font-weight: 700;
-    font-size: 16px;
+    font-size: 17px;
   }
   & > div:first-of-type {
     width: 12px;
   }
   & > div:last-of-type {
-    font-size: 30px;
+    font-size: 31px;
     cursor: pointer;
   }
 `;

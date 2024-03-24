@@ -1,4 +1,6 @@
 import styles from "./name.module.css";
+import Groom from "@/assets/Groom.svg";
+import Bride from "@/assets/Bride.svg";
 
 export default function Name({ name }: { name: string }) {
   const { groom, bride } = JSON.parse(name);
@@ -7,9 +9,16 @@ export default function Name({ name }: { name: string }) {
       <div>
         <div
           className={styles.block + " cursive"}
-          style={{ fontSize: "15px", marginLeft: "10px" }}
+          style={{ width: "100px", height: "19px", position: "relative" }}
         >
-          groom
+          <Groom
+            style={{
+              position: "absolute",
+              top: "0",
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          />
         </div>
         <div
           className={styles.block}
@@ -17,7 +26,8 @@ export default function Name({ name }: { name: string }) {
             width: "100px",
             height: "30px",
             letterSpacing: "5px",
-            fontSize: "16px",
+            fontSize: "18px",
+            fontWeight: "bold",
           }}
         >
           {groom}
@@ -27,9 +37,16 @@ export default function Name({ name }: { name: string }) {
       <div>
         <div
           className={styles.block + " cursive"}
-          style={{ fontSize: "15px", marginLeft: "10px" }}
+          style={{ width: "100px", height: "19px", position: "relative" }}
         >
-          bride
+          <Bride
+            style={{
+              position: "absolute",
+              top: "0",
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          />
         </div>
         <div
           className={styles.block}
@@ -37,7 +54,8 @@ export default function Name({ name }: { name: string }) {
             width: "100px",
             height: "30px",
             letterSpacing: "5px",
-            fontSize: "16px",
+            fontSize: "18px",
+            fontWeight: "bold",
           }}
         >
           {bride}

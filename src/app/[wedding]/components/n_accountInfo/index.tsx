@@ -136,7 +136,7 @@ export default function AccountInfo({
 }
 
 const SubTitle = styled.div`
-  font-size: 12px;
+  font-size: 15px;
   margin-top: var(--margin-top);
 `;
 const Annoucement = styled.div`
@@ -145,7 +145,7 @@ const Annoucement = styled.div`
   white-space: pre-line;
   line-height: 26px;
   margin-bottom: var(--margin-top);
-  font-size: 14px;
+  font-size: 15px;
 
   &.empty {
     color: var(--gray-color);
